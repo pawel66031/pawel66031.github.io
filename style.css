@@ -37,20 +37,29 @@ body{
     font-size: 30px;
     text-align: center;
     display: inline-block;
-    /*! float: left; */
+    float: left;
     overflow: none;
 }
 .menu{
     background-color: purple;
     width:75px;
-    float:right;
+    float: right;
     height: 100%;
 }
 
 .contents{
     background-color: chartreuse;
-    height: fit-content;
+    height: 400px;
     display: inline-block;
     /*! float: left; */
     width: 100%;
+}
+
+.images-slide{
+    height: 100%;
+    width: 600px;
+    background-color: white;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
