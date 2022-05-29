@@ -37,7 +37,7 @@ body{
     font-size: 30px;
     text-align: center;
     display: inline-block;
-    /*! float: left; */
+    /* float: left; */
     overflow: none;
 }
 .menu{
