@@ -1,6 +1,12 @@
+html{
+    overflow-y: scroll;
+}
+
 body{
     margin: 0;
     padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    position: absolute;
 }
 
 .window{
@@ -52,6 +58,8 @@ body{
     height: 400px;
     display: inline-block;
     /*! float: left; */
+    background-image: url("sky-ge34fc76d6_1920.jpg");
+    background-position: 50%;
     width: 100%;
 }
 
@@ -62,4 +70,48 @@ body{
     position: relative;
     left: 50%;
     transform: translate(-50%, 0);
+}
+
+/*Items in index webpage*/
+.index-items{
+    background-color: white;
+    width: 100%;
+    height: auto;
+}
+
+.index-items-margin-box{
+    background-color: white;
+    margin: 24px;
+    height: 400px;
+}
+.index-items-single-box{
+    background-color: gray;
+    width: 33.333%;
+    height: auto;
+    float: left;
+}
+.index-items-box-image{
+    /* position: relative; */
+    background-position: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 16px;
+
+    margin: 12px;
+    width: auto;
+    height: 200px;    
+}
+.index-items-box-image-style{
+    /* margin-top: 24px; */
+    width: 100%;
+    height: 100%;
+}
+.index-items-box-title{
+    margin: 12px;
+    font-size: x-large;
+}
+.index-items-box-description{
+    margin: 12px;
 }
