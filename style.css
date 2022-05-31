@@ -36,12 +36,8 @@ body{
     text-anchor: middle;
     font-size: 30px;
     text-align: center;
-    display: inline-block;
-<<<<<<< HEAD
-    /* float: left; */
-=======
+    display: block;
     float: left;
->>>>>>> ec4a3a503ff4b2d411a40649da91440ca2752654
     overflow: none;
 }
 .menu{
@@ -61,7 +57,7 @@ body{
 
 .images-slide{
     height: 100%;
-    width: 600px;
+    width: 80%;
     background-color: white;
     position: relative;
     left: 50%;
