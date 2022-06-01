@@ -6,6 +6,11 @@ body{
     overflow-y: scroll;
 
 }
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
 
 .window{
     height: 100%;
@@ -45,7 +50,7 @@ body{
 }
 .menu{
     background-color: purple;
-    width:75px;
+    width:auto;
     float: right;
     height: 100%;
 }
