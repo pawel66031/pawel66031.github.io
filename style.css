@@ -50,14 +50,36 @@ body{
     height: 100%;
 }
 
+/* Index contents */
 .contents{
-    background-color: chartreuse;
     height: 400px;
     display: inline-block;
     /*! float: left; */
     background-image: url("sky-ge34fc76d6_1920.jpg");
+    background-color: white;
     background-position: 50%;
     width: 100%;
+}
+.content-box{
+    margin: 128px;
+}
+
+div.title-content{
+    width: auto;
+    height: auto;
+    color: white;
+    margin: 16px;
+
+    align-content: center;
+    text-align: center;
+    font-size: 42px;
+}
+div.description-content{
+    align-content: center;
+    text-align: center;
+    color: white;
+
+    font-size: 22px;
 }
 
 .images-slide{
