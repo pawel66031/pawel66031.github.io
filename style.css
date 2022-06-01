@@ -92,6 +92,9 @@ div.description-content{
 }
 
 /*Items in index webpage*/
+.index-items-title{
+    margin: 24px;
+}
 .index-items{
     background-color: white;
     width: 100%;
