@@ -6,7 +6,7 @@ body{
     overflow-y: scroll;
 
 }
-ul {
+/* ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -28,6 +28,15 @@ li a{
     float: right;
 }
 
+/* li{
+    display: inline;
+    float: right;
+    margin: 8px;
+} */
+
+a{
+    text-decoration: none;
+}
 .window{
     height: 100%;
     width: 100%;
@@ -41,20 +50,26 @@ li a{
     background-color: red;
     height: 100%;
     width: 75px;
-    display: revert;
+    /* display: revert; */
     margin: 0;
     float: left;
 }
+
 .title{
     background-color: yellow;
     width: 300px;
     height: 100%;
     float: left;
+    padding: 8px;
 }
 
 .top{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
     background-color: royalblue;
-    height: 75px;
+    /* height: 75px; */
     width: 100%;
     text-anchor: middle;
     font-size: 30px;
@@ -63,6 +78,13 @@ li a{
     float: left;
     overflow: none;
 }
+
+.menu-item{
+        display: inline;
+        float: right;
+        margin: 8px;
+}
+
 .menu{
     background-color: purple;
     width:auto;
@@ -72,8 +94,9 @@ li a{
 
 /* Index contents */
 .contents{
-    height: 400px;
+    height: 700px;
     display: inline-block;
+    position: relative;
     /*! float: left; */
     background-image: url("sky-ge34fc76d6_1920.jpg");
     background-color: white;
@@ -81,7 +104,12 @@ li a{
     width: 100%;
 }
 .content-box{
-    margin: 128px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 div.title-content{
@@ -114,11 +142,42 @@ div.description-content{
 /*Items in index webpage*/
 .index-items-title{
     margin: 24px;
+    font-size: 24px;
 }
+
 .index-items{
     background-color: white;
     width: 100%;
     height: auto;
+}
+.index-items-retail{
+    background-color: rgb(177, 177, 177);
+    border-radius: 24px;
+    border-color: lightgray;
+    width: auto;
+
+    position: relative;
+
+    /* height:175px; */
+    text-align: center;
+    margin: 50px 300px;
+    padding: 20px;
+    /* color: gray; */
+    font-size: 36px;
+}
+.index-retail-info{
+    color:gray;
+}
+
+.button-retail{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.index-items-retail-file-name{
+    margin: 8px 0;
 }
 
 .index-items-margin-box{
@@ -156,4 +215,16 @@ div.description-content{
 }
 .index-items-box-description{
     margin: 12px;
+}
+
+.bottom{
+    width: 100%;
+    display: block;
+    float: left;
+}
+
+.bottom-text{
+    margin: 8px;
+    text-align: center;
+    font-size: 14px;
 }
