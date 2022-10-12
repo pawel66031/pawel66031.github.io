@@ -3,6 +3,17 @@ body{
     padding: 0;
 }
 
+/* Web GL */
+canvas {
+    border: 0px solid white;
+    background-color: black;
+    /* width: 100%; */
+  }
+  video {
+    display: none;
+  }
+/* End WebGL*/
+
 .window{
     height: 100%;
     width: 100%;
