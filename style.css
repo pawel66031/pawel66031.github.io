@@ -11,8 +11,7 @@ body{
     margin: 0;
     padding: 0;
 }
-
-<<<<<<< HEAD
+*/
 /* Web GL */
 canvas {
     border: 0px solid white;
@@ -23,8 +22,6 @@ canvas {
     display: none;
   }
 /* End WebGL*/
-
-=======
 li{
     float: left;
     height: 100%;
@@ -51,7 +48,7 @@ a{
     color: black;
     text-decoration: none;
 }
->>>>>>> 53a4cac298921142130d0707bc450b8aa19cfbd8
+
 .window{
     height: 100%;
     width: 100%;
@@ -95,9 +92,9 @@ a{
 }
 
 .menu-item{
-        display: inline;
-        float: right;
-        margin: 8px;
+    display: inline;
+    float: right;
+    margin: 8px;
 }
 
 .menu{
@@ -105,14 +102,15 @@ a{
     width:auto;
     float: right;
     height: 100%;
+    padding: 8px;
 }
 
 /* Index contents */
-.contents{
+#contents{
     height: 700px;
     display: inline-block;
     position: relative;
-    /*! float: left; */
+    float: left;
     background-image: url("sky-ge34fc76d6_1920.jpg");
     background-color: white;
     background-position: 50%;
