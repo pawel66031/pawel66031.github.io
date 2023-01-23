@@ -1,0 +1,23 @@
+{
+  "name": "pawel66031.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pawel66031/pawel66031.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pawel66031/pawel66031.github.io/issues"
+  },
+  "homepage": "https://github.com/pawel66031/pawel66031.github.io#readme",
+  "dependencies": {
+    "three": "^0.146.0"
+  }
+}

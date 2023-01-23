@@ -1,11 +1,13 @@
-body{
+body {
     margin: 0;
     padding: 0;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Arial Narrow', Arial, sans-serif;
     /*position: absolute;*/
     overflow-y: scroll;
+    overflow-x: hidden;
 
 }
+
 /* ul {
     list-style-type: none;
     margin: 0;
@@ -17,18 +19,20 @@ canvas {
     border: 0px solid white;
     background-color: black;
     /* width: 100%; */
-  }
-  video {
+}
+
+video {
     display: none;
-  }
+}
+
 /* End WebGL*/
-li{
+li {
     float: left;
     height: 100%;
 
 }
 
-li a{
+li a {
     display: block;
     color: white;
     text-align: center;
@@ -44,12 +48,12 @@ li a{
     margin: 8px;
 } */
 
-a{
+a {
     color: black;
     text-decoration: none;
 }
 
-.window{
+.window {
     height: 100%;
     width: 100%;
     background-color: orange;
@@ -58,7 +62,7 @@ a{
     /*! overflow: auto; */
 }
 
-.logo{
+.logo {
     background-color: red;
     height: 100%;
     width: 75px;
@@ -67,7 +71,7 @@ a{
     float: left;
 }
 
-.title{
+.title {
     background-color: yellow;
     width: 300px;
     height: 100%;
@@ -75,48 +79,65 @@ a{
     padding: 8px;
 }
 
-.top{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.top {
+    width: 100%;
+    height: 55px;
 
-    background-color: royalblue;
-    /* height: 75px; */
+    background: cornflowerblue;
+}
+
+.top-menu {
+    list-style-type: none;
+    margin: auto;
+    padding: 0;
+    line-height: 55px;
+
+    /* background-color: royalblue; */
+    height: 100%;
+    max-width: 90rem;
     width: 100%;
     text-anchor: middle;
     font-size: 30px;
     text-align: center;
-    display: block;
-    float: left;
-    overflow: none;
+    /* display: block; */
+
+    box-sizing: inherit;
 }
 
-.menu-item{
+.top-logo-menu {
+    float: left;
+    height: 100%;
+}
+
+.top-logo-clickable {
+    display: block;
+    height: 100%;
+    padding: 0 8px;
+    text-decoration: none;
+    line-height: 55px;
+}
+
+.top-option-menus {
+    float: right;
+    height: 100%;
+}
+
+.menu-item {
     display: inline;
     float: right;
     margin: 8px;
 }
 
-.menu{
+.menu {
     background-color: purple;
-    width:auto;
+    width: auto;
     float: right;
     height: 100%;
     padding: 8px;
 }
 
-/* Index contents */
-#contents{
-    height: 700px;
-    display: inline-block;
-    position: relative;
-    float: left;
-    background-image: url("sky-ge34fc76d6_1920.jpg");
-    background-color: white;
-    background-position: 50%;
-    width: 100%;
-}
-.content-box{
+
+.content-box {
     margin: 0;
     position: absolute;
     top: 50%;
@@ -125,7 +146,7 @@ a{
     transform: translate(-50%, -50%);
 }
 
-div.title-content{
+div.title-content {
     width: auto;
     height: auto;
     color: white;
@@ -135,7 +156,8 @@ div.title-content{
     text-align: center;
     font-size: 42px;
 }
-div.description-content{
+
+div.description-content {
     align-content: center;
     text-align: center;
     color: white;
@@ -143,7 +165,7 @@ div.description-content{
     font-size: 22px;
 }
 
-.images-slide{
+.images-slide {
     height: 100%;
     width: 80%;
     background-color: white;
@@ -152,18 +174,23 @@ div.description-content{
     transform: translate(-50%, 0);
 }
 
+#threed-view {
+    height: 800px
+}
+
 /*Items in index webpage*/
-.index-items-title{
+.index-items-title {
     margin: 24px;
     font-size: 24px;
 }
 
-.index-items{
+.index-items {
     background-color: white;
     width: 100%;
     height: auto;
 }
-.index-items-retail{
+
+.index-items-retail {
     background-color: rgb(177, 177, 177);
     border-radius: 24px;
     border-color: lightgray;
@@ -178,33 +205,36 @@ div.description-content{
     /* color: gray; */
     font-size: 36px;
 }
-.index-retail-info{
-    color:gray;
+
+.index-retail-info {
+    color: gray;
 }
 
-.button-retail{
+.button-retail {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
 
-.index-items-retail-file-name{
+.index-items-retail-file-name {
     margin: 8px 0;
 }
 
-.index-items-margin-box{
+.index-items-margin-box {
     background-color: white;
     margin: 24px;
     height: 400px;
 }
-.index-items-single-box{
+
+.index-items-single-box {
     background-color: gray;
     width: 33.333%;
     height: auto;
     float: left;
 }
-.index-items-box-image{
+
+.index-items-box-image {
     /* position: relative; */
     background-position: center;
 
@@ -215,28 +245,31 @@ div.description-content{
 
     margin: 12px;
     width: auto;
-    height: 200px;    
+    height: 200px;
 }
-.index-items-box-image-style{
+
+.index-items-box-image-style {
     /* margin-top: 24px; */
     width: 100%;
     height: 100%;
 }
-.index-items-box-title{
+
+.index-items-box-title {
     margin: 12px;
     font-size: x-large;
 }
-.index-items-box-description{
+
+.index-items-box-description {
     margin: 12px;
 }
 
-.bottom{
+.bottom {
     width: 100%;
     display: block;
     float: left;
 }
 
-.bottom-text{
+.bottom-text {
     margin: 8px;
     text-align: center;
     font-size: 14px;

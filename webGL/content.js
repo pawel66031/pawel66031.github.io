@@ -1,55 +1,22 @@
-import * as THREE from "three"; 
+import * as THREE from "three";
 
 import { GLTFLoader } from './ThreeJS/loaders/GLTFLoader.js';
-
-function createWheels(){
-    const geometry = new THREE.BoxGeometry(12, 12, 33);
-
-    const material = new THREE.MeshLambertMaterial({color: 0x333333});
-    const wheel = new THREE.Mesh(geometry, material);
-    return wheel;
-}
-
-function createCar() {
-    const car = new THREE.Group();
-
-    const backWheel = createWheels();
-    backWheel.position.y = 6;
-    backWheel.position.x = -18;
-    car.add(backWheel);
-
-    const frontWheel = createWheels();
-    frontWheel.position.y = 6;
-    frontWheel.position.x = 18;
-    car.add(frontWheel);
-
-    // Create mesh
-    const mainMesh = new THREE.Mesh(
-        new THREE.BoxGeometry(60, 15, 30),
-        new THREE.MeshLambertMaterial({color:0x78b14b})
-    );
-    mainMesh.position.y = 12;
-    car.add(mainMesh);
-
-    const cabin = new THREE.Mesh(
-        new THREE.BoxGeometry(33, 12, 24),
-        new THREE.MeshLambertMaterial({color: 0xffffff})
-    );
-
-    cabin.position.x = -6;
-    cabin.position.y = 25.5;
-    car.add(cabin);
-
-    return car;
-}
-
+import { EXRLoader } from './ThreeJS/loaders/EXRLoader.js';
 
 // Do render if you find div that matches the id that is given below
-const contentDiv = document.getElementById("contents");
-if(contentDiv){
+const contentDiv = document.getElementById("threed-view");
+if (contentDiv) {
     var renderer, scene, camera;
 
     var ambientLight, directionalLight;
+
+    var uniforms;
+
+    // Particles
+    const flames = {};
+
+    // Scene background
+    let exrBackground;
 
     // Mouse reaction
     let mouseX = 0, mouseY = 0;
@@ -61,80 +28,101 @@ if(contentDiv){
     init();
     animate();
 
-    function init(){
-            scene = new THREE.Scene();
-            
-            ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-            scene.add(ambientLight);
-            
-            directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-            directionalLight.position.set(200, 500, 300);
-            scene.add(directionalLight);
-            
-            // Setting up camera
-            const aspectRatio = contentDiv.clientWidth / contentDiv.clientHeight;
-            const cameraWidth = 150;
-            const cameraHeight = cameraWidth / aspectRatio;
-            
-            // camera = new THREE.OrthographicCamera(
-            //     cameraWidth / -2, // left
-            //     cameraWidth / 2, // right
-            //     cameraHeight / 2, // top
-            //     cameraHeight / -2, // bottom
-            //     0,
-            //     1000
-            //     );
-            camera = new THREE.PerspectiveCamera(
-                70, aspectRatio, 0.1, 1000
-            );
+    function init() {
+        scene = new THREE.Scene();
 
-            camera.position.set(0, 0, 10);
-            camera.lookAt(0, 0, -1000);
-                
-                const loader = new GLTFLoader().setPath("model3D/");
-                loader.load("troglodyte2.gltf", function (gltf) {
-                    scene.add(gltf.scene);
+        ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
 
-                    render();
-                });
+        directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(200, 500, 300);
+        scene.add(directionalLight);
 
-            // const car = createCar();
-            // scene.add(car);
+        // Setting up camera
+        const aspectRatio = contentDiv.clientWidth / contentDiv.clientHeight;
+        const cameraWidth = 150;
+        const cameraHeight = cameraWidth / aspectRatio;
 
-            // const box = new THREE.BoxGeometry(1, 1, 1);
-            // const boxMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
-            // const cube = new THREE.Mesh(box, boxMaterial);
-            // scene.add(cube);
+        // camera = new THREE.OrthographicCamera(
+        //     cameraWidth / -2, // left
+        //     cameraWidth / 2, // right
+        //     cameraHeight / 2, // top
+        //     cameraHeight / -2, // bottom
+        //     0,
+        //     1000
+        //     );
+        camera = new THREE.PerspectiveCamera(
+            54, aspectRatio, 0.1, 3500
+        );
+
+        camera.position.set(0, 200, 250);
+        camera.lookAt(0, 0, -1000);
+
+        // Set up renderer
+        renderer = new THREE.WebGLRenderer({ antialias: true });
+        // Append rendered picture to contents id
+        // const canvas = contentDiv.appendChild(renderer.domElement);
+        renderer.setSize(contentDiv.clientWidth, contentDiv.clientHeight);
+        console.log(contentDiv.clientWidth);
+        // renderer.setSize(window.innerWidth, window.innerHeight);
+        // document.body.appendChild( renderer.domElement );
+        const canvas = contentDiv.appendChild(renderer.domElement);
+        canvas.style = "width:100%; height:100%;";
+
+        const pmremGenerator = new THREE.PMREMGenerator(renderer);
+
+        // Load background
+
+        // scene.background = new EXRLoader()
+        //     .load("textures/forest.exr", function (texture) {
+        //         exrCubeRenderTarget = pmremGenerator.fromEquirectangular(texture);
+        //         scene.background = exrCubeRenderTarget.texture;
+
+        //         texture.dispose();
+
+        //     })
+
+        // Load 3D model
+
+        const loader = new GLTFLoader().setPath("model3D/");
+        // loader.load("troglodyte2.gltf", function (gltf) {
+        loader.load("myCity.gltf", function (gltf) {
+            gltf.scene.position.set(0, 0, -500);
+            scene.add(gltf.scene);
+
+            render();
+        });
+
+        // const car = createCar();
+        // scene.add(car);
+
+        // const box = new THREE.BoxGeometry(1, 1, 1);
+        // const boxMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
+        // const cube = new THREE.Mesh(box, boxMaterial);
+        // scene.add(cube);
 
 
-            // Set up renderer
-            renderer = new THREE.WebGLRenderer({antialias: true});
-            // Append rendered picture to contents id
-            // const canvas = contentDiv.appendChild(renderer.domElement);
-            renderer.setSize(contentDiv.clientWidth, contentDiv.clientHeight);
-            console.log(contentDiv.clientWidth);
-            // renderer.setSize(window.innerWidth, window.innerHeight);
-            // document.body.appendChild( renderer.domElement );
-            const canvas = contentDiv.appendChild(renderer.domElement);
-            canvas.style = "width:100%; height:100%;";
-
-            window.addEventListener("resize", resizeWebGLWindow);
+        window.addEventListener("resize", resizeWebGLWindow);
     }
-    function render(){
+
+    // Rendering
+
+    function render() {
         camera.position.x += (mouseX - camera.position.x) * 0.1;
         camera.position.y += (-mouseY - camera.position.y) * 0.1;
 
         camera.lookAt(0, 0, -1000);
-
+        renderer.setClearColor('rgb(145, 154, 100)')
         renderer.render(scene, camera);
     }
 
-    function onContentMouseMove( event ){
-        mouseX = ((event.clientX - windowHalfX) * 0.01);
-        mouseY = ((event.clientY - windowHalfY) * 0.01) - 2;
+    function onContentMouseMove(event) {
+        mouseX = ((event.clientX - windowHalfX) * 0.75);
+        mouseY = ((event.clientY - windowHalfY) * 0.4) - windowHalfY;
+        // mouseY = ((event.clientY - windowHalfY) * 0.2) - 2;
     }
 
-    function resizeWebGLWindow(){
+    function resizeWebGLWindow() {
         windowHalfX = contentDiv.clientWidth / 2;
         windowHalfY = contentDiv.clientHeight / 2;
 
@@ -142,17 +130,19 @@ if(contentDiv){
         camera.updateProjectionMatrix();
     }
 
-    function animate(){
+    function animate() {
+
         requestAnimationFrame(animate);
+
         render();
     }
 
-    function rotateCamera(){
+    function rotateCamera() {
         requestAnimationFrame(rotateCamera);
-        
-        camera.position.x += 0.01;
-        camera.position.y += 0.01;
-        
+
+        camera.position.x += 0.005;
+        camera.position.y += 0.005;
+
         renderer.render(scene, camera);
     }
 
