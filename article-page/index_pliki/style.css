@@ -1,0 +1,257 @@
+/*
+Theme Name: Masovia Roller
+Theme URI: https://yourwebsite.com
+Author: Paweł Ruszkiewicz
+Author URI: https://yourwebsite.com
+Description: This is my first custom theme!
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: masovia-roller
+Tags: custom-background
+*/
+
+body {
+    background: url(resources/image-of-the-day/default.jpg) 50% 40%;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.menu {
+    margin: 0;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: #073979;
+}
+
+.background-image {
+    height: 100vh;
+    background: url(resources/image-of-the-day/default.jpg);
+    width: 100%;
+    min-height: 100%;
+    background-size: cover;
+    background-position: 50% 40%;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.site-top-bar {
+    background-color: #4e4b64;
+    height: 55px;
+    color: white;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.site-top-bar-contents {
+    width: 1200px;
+    margin: auto;
+    height: 100%;
+    line-height: 55px;
+}
+
+.site-background-elements {
+    background-color: rgba(78, 75, 100, 0.8);
+    width: 1200px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.site-elements {
+    line-height: 1.65;
+    font-family: Georgia, Times, Times New Roman, serif;
+}
+
+.menu-site-top-bar-container {
+    width: 70%;
+    float: right;
+}
+
+#menu-site-top-bar {
+    list-style: none;
+}
+
+#menu-site-top-bar>li {
+    height: 100%;
+    float: right;
+}
+
+#menu-site-top-bar>li>a {
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    float: left;
+    margin: 0px 12px;
+}
+
+/* Countries */
+
+#countries-list {
+    width: 100%;
+}
+
+.menu-countries-list-container {
+    float: left;
+    text-align: center;
+    list-style: none;
+    text-decoration: none;
+    height: 35px;
+    width: 100%;
+}
+
+.menu-countries-list-container>ul {
+    padding: 0;
+}
+
+#menu-countries-list {
+    width: 100%;
+    float: left;
+    text-align: center;
+    list-style: none;
+    height: 100%;
+    line-height: 35px;
+}
+
+#menu-countries-list>li {
+    padding: 0;
+    float: left;
+    width: 10%;
+    background-color: white;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+#menu-countries-list>li>a {
+    text-decoration: none;
+    color: black;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+.site-header {
+    border-bottom: 2px solid;
+    margin: 0;
+    padding: 16px;
+    background-color: #f0eefb;
+}
+
+.site-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: .25rem;
+    line-height: 1;
+}
+
+.site-title a {
+    text-decoration: none;
+    color: black
+}
+
+.site-description {
+    margin-top: 0;
+    color: #8e8e8e;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #696969;
+}
+
+.menu ul li a:hover {
+    text-decoration: underline;
+    color: #000;
+}
+
+.site-main {
+    width: 70%;
+    float: left;
+}
+
+.site-main-content {
+    margin: 8px;
+    padding: 8px;
+    background-color: white;
+}
+
+.site-content {
+    margin: 8px;
+    padding: 8px;
+    background-color: white;
+    overflow: hidden;
+    float: left;
+}
+
+
+article {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Sidebar */
+.site-sidebar {
+    width: 30%;
+    float: left;
+}
+
+.sidebar {
+    list-style: none;
+    margin-top: 8px;
+    font-size: 14px;
+    background-color: white;
+    padding: 8px;
+    margin-right: 8px;
+}
+
+.widgettitle {
+    border-top: 2px solid;
+    border-bottom: 1px solid #ccc;
+    padding: .25rem 0;
+    font-size: 1.25rem
+}
+
+.widget {
+    margin-bottom: 3rem
+}
+
+label {
+    display: block
+}
+
+.commentlist {
+    list-style: none;
+    padding-left: 0;
+}
+
+/* Footer */
+.site-footer {
+    float: left;
+    background-color: rgba(78, 75, 100, 0.95);
+    width: 100%;
+    min-height: 110px;
+    margin-top: 16px;
+    color: white;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.site-footer-authors {
+    width: 1200px;
+    margin: auto;
+    padding: 30px;
+}
+
+.site-footer-contents {
+    width: 1200px;
+    margin: auto;
+}
