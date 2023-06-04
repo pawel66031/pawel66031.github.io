@@ -5,7 +5,9 @@ body {
     /*position: absolute;*/
     overflow-y: scroll;
     overflow-x: hidden;
-
+    background: url(sky-ge34fc76d6_1920.jpg);
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 /* ul {
@@ -173,9 +175,35 @@ div.description-content {
     left: 50%;
     transform: translate(-50%, 0);
 }
+/* Main page */
+
+.graphic-item {
+    background-color: rgba(200, 200, 200, 0.75);
+    margin: 8px;
+}
+
+.graphic-title{
+    width: auto;
+    font-size: 32px;
+    padding: 15px;
+}
+
+.graphic-thumbnail{
+    width: 300px;
+    height: 300px;
+    float:left;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    margin-right: 12px;
+}
+
+.graphic-details{
+    min-height: 300px;
+}
 
 #threed-view {
-    height: 800px
+    height: 350px
 }
 
 /*Items in index webpage*/
