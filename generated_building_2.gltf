@@ -1,0 +1,23 @@
+{
+	"asset":{
+		"generator":"Khronos glTF Blender I/O v4.2.60",
+		"version":"2.0"
+	},
+	"scene":1,
+	"scenes":[
+		{
+			"name":"Scene"
+		},
+		{
+			"name":"Test Building",
+			"nodes":[
+				0
+			]
+		}
+	],
+	"nodes":[
+		{
+			"name":"NurbsPath.002"
+		}
+	]
+}
