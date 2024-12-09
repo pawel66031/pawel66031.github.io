@@ -183,9 +183,78 @@ class Scene_RoomWithBalls {
     }
 }
 
+
+
+class Scene_RefractionMaterial{
+    constructor() {
+        this._Initialize();
+    }
+    _Initialize() { 
+        this.clock = new THREE.Clock();
+
+        // Setup render
+        this._render = new THREE.WebGLRenderer({
+            antialias: true,
+            precision: "lowp",
+        });
+        this._render.setPixelRatio(window.devicePixelRatio);
+        this._render.setSize(window.innerWidth, window.innerHeight);
+        this._render.setClearColor(new THREE.Color(0.0, 0.745, 0.019));
+
+        // Add WebGL renderer to the HTML
+        document.body.appendChild(this._render.domElement);
+
+        // Set scene
+        this._scene = new THREE.Scene();
+
+        // Set camera
+        this._camera = new THREE.Camera();
+
+        this._LoadScene();
+
+        this._render.render(this._scene, this._camera);
+    }
+
+    _OnWindowResize() {
+        this._camera.aspect = window.innerWidth / window.innerHeight;
+        this._requestProjectionMatrixUpdate = true;
+        this._camera.updateProjectionMatrix();
+
+        // this._wallMaterial.uniforms.u_resolution.value = new THREE.Vector2(window.innerWidth * DPR, window.innerHeight * DPR);
+    }
+
+    _LoadScene() {
+        const iceScene = new GLTFLoader();
+
+        iceScene.load('/assets/3d/ice_scene.glb',
+            (gltf) => {
+                const model = gltf.scene;
+
+                // const Ice = gltf.scenes[0].children[0];
+                
+                // const IceMaterial = new THREE.MeshPhysicalMaterial({
+                //     roughness: 0.2,
+                //     transmission: 1,
+                //     thickness: 0.5
+                // });
+
+                // Ice.material = IceMaterial;
+
+                this._camera = gltf.cameras[0];
+
+                this._scene.add(model);
+                this._OnWindowResize();
+
+                this._render.render(this._scene, this._camera);
+            }
+        )
+    }
+}
+
 // let _APP = null;
 
 window.addEventListener('DOMContentLoaded', () => {
     // _APP = new MainPageDemo(); 
-    _APP = new Scene_RoomWithBalls();
+    // _APP = new Scene_RoomWithBalls();
+    _APP = new Scene_RefractionMaterial();
 });
