@@ -20,7 +20,7 @@
 
 body {
     margin: 0px;
-    background-color: #4c4b16;
+    background-color: #100F0F;
     color: #3d3d3d;
     font-family: "DM Serif Text";
     /* background: linear-gradient(180deg, rgba(0, 19, 5, 1) calc(100% - 192px), rgba(0, 0, 0, 1) 100%); */
@@ -188,26 +188,57 @@ a:active {
     right: var(--border-px);
 
     border: 12px;
-    border-color: #E6C767;
+    border-color: #E2DCC8;
     border-style: solid;
     border-radius: var(--hero-border-radius);
 }
 
-/*****************/
-/* Color Definer */
-/*****************/
+/*********************/
+/*   Color Definer   */
+/*********************/
 
 /* https://colorhunt.co/palette/4c4b16898121e6c767f87a53 */
 /* https://colorhunt.co/palette/100f0f0f3d3ee2dcc8f1f1f1 */
 
+.color-1 {
+    background-color: #100F0F;
+    /* color: #F3F2F2; */
+    color: #C1EFF0;
+}
+
+.color-1-description {
+    color: #d6f5f5;
+}
+
+.color-2 {
+    background-color: #0F3D3E;
+    color: #EAFAFA;
+}
+
+.color-2-brighter {
+    background-color: #1e7a7b;
+}
+
 .color-3 {
-    background-color: #E6C767;
-    color: #fbf7e9;
+    /* background-color: #E2DCC8; */
+    background-color: #110F09;
+    color: #E2DCC8;
 }
 
 .color-3-description {
-    color: #2C2307;
+    /* color: #2C2307; */
+    color: #f6f4ee;
 }
+
+.color-4 {
+    background-color: #F1F1F1;
+    color: #0D0D0D;
+}
+
+.color-4-description {
+    background-color: #F1F1F1;
+}
+
 
 .color-red {
     background-color: #F87A53;
@@ -277,7 +308,6 @@ a:active {
 /* Portfolio - About Me */
 .portfolio-main-about-me {
     padding: 100px 0;
-    background-color: #F87A53;
     text-align: center;
 }
 
@@ -302,11 +332,13 @@ a:active {
 }
 
 .portfolio-about-me-description>p>a {
-    color: white;
+    color: #497c42;
+    text-decoration: underline;
 }
 
 .portfolio-about-me-description>p>a:hover {
     color: lightskyblue;
+    text-decoration: none;
 }
 
 .portfolio-about-me-left-section {
@@ -332,8 +364,6 @@ a:active {
 
 .portfolio-main-about-me-description {
     font-size: 1rem;
-    /* position: absolute; */
-    color: #161104;
     text-align: center;
     /* padding: 0 30%; */
     width: 425px;
@@ -385,7 +415,6 @@ a:active {
 /*************************/
 
 .portfolio-technology-skills {
-    background-color: #E6C767;
     padding-top: 90px;
     padding-bottom: 60px;
 }
@@ -498,15 +527,17 @@ a:active {
 }
 
 .project-item {
-    height: 250px;
+    /* height: 250px; */
+    height: 13vw;
     margin: 0;
     align-items: center;
-    padding: 12px 0;
+    /* padding: 12px 0; */
     /* backdrop-filter: brightness(8%); */
 }
 
 .project-short-info {
     display: flex;
+    height: 100%;
 }
 
 .project-date {
@@ -523,7 +554,7 @@ a:active {
 .project-short-info>h3 {
     font-size: 40px;
     padding: 0 16px;
-    margin: 8px 0;
+    margin: auto 0;
 }
 
 .project-short-info:hover>h3 {
@@ -662,13 +693,17 @@ a:active {
     margin: 0 auto;
 }
 
+.portfolio-project-list {
+    height: 100%;
+    margin: auto;
+}
+
 .portfolio-technology-computer-skills {
     display: flex;
     padding: 20px;
 }
 
 .portfolio-technology-table-softwares {
-    background-color: #dbad24;
     padding: 8px;
     display: flex;
     flex-direction: column;
@@ -679,7 +714,6 @@ a:active {
 }
 
 .portfolio-technology-table {
-    background-color: #dbad24;
     padding: 8px;
     margin: 8px;
 
@@ -807,7 +841,8 @@ a:active {
 /*******************************************/
 
 #graphic-dragon-sculpture {
-    background-image: url("/assets/images/dragon-sculpture.png");
+    background-image: linear-gradient(to right, rgba(10, 41, 41, 1.0) 0%, rgba(10, 41, 41, 0.0) 25%), url("/assets/images/dragon-sculpture.png");
+    background-color: rgb(10, 41, 41);
     background-size: 50%;
     background-repeat: no-repeat;
     background-position-x: 100%;
