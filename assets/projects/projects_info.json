@@ -1,0 +1,28 @@
+{
+    "projects": [
+        {
+            "name": "Test Chamber",
+            "type": 0,
+            "date": "2024",
+            "description": "Lorem Ipsum",
+            "project_background": {
+                "url": "/assets/images/zack-fair-capture3.jpg",
+                "size": "cover",
+                "position_x": "",
+                "position_y": "25%"
+            }
+        },
+        {
+            "name": "Dragon Sculpt",
+            "type": 0,
+            "date": "2023",
+            "description": "Based on game",
+            "project_background": {
+                "url": "/assets/images/zack-fair-capture3.jpg",
+                "size": "cover",
+                "position_x": "",
+                "position_y": "18%"
+            }
+        }
+    ]
+}
