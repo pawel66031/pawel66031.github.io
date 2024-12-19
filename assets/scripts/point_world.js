@@ -26,6 +26,8 @@ class DotsFloor {
         this.size_x = 128;
         this.size_y = 128;
 
+        this.animationValue = 0.0;
+
         this.dotScene = new THREE.Scene();
         this.dotScene.background = new THREE.Color(0x252525)
         // this.camera = new THREE.OrthographicCamera(-20.0, 20.0, -10.0, 10.0, 0.1, 2000.0);
@@ -85,26 +87,44 @@ class DotsFloor {
 
         /* To move camera, change those values */
         emptyCamera.rotateY(Math.PI * 0.25);
-        // emptyCamera.rotateX(0.9554 - Math.PI * 0.5);
         emptyCamera.rotateX(-0.6154);
-        // emptyCamera.rotateX(Math.PI * 0.195);
-        // emptyCamera.rotateX(-0.9553)
-
-        // emptyCamera.position.y = -200.0;
 
 
         /* Test Cube for Debugging */
         const materialDebug = new THREE.PointsMaterial({
-            size: 8.0,
+            size: 3.0,
             color: 0xFF00FF
         });
 
-        const box = new THREE.BoxGeometry(3, 1, 1, 3);
+        /* Geometry creator */
+        // const box = new THREE.BoxGeometry(1, 1, 1);
+        const box = new THREE.BufferGeometry();
+        const boxGeometry = [];
+
+        const BoxSizeX = 4;
+        const BoxSizeY = 4;
+        const BoxSizeZ = 2;
+
+        for (var i = 0; i <= BoxSizeX; ++i) {
+            for (var j = 0; j <= BoxSizeY; ++j) {
+                for (var k = 0; k <= BoxSizeZ; ++k) {
+                    boxGeometry.push(i, j, k);
+                }
+            }
+        }
+
+        box.setAttribute('position', new THREE.Float32BufferAttribute(boxGeometry, 3));
+        console.log(boxGeometry);
+
         this.dotCube = new THREE.Points(box, materialDebug);
 
-        // this.dotCube.translateX(0.5);
+        this.dotCube.translateX(0);
         this.dotCube.translateY(0.5);
-        // this.dotCube.translateZ(0.5);
+        this.dotCube.translateZ(0);
+
+        this.dotCube.scale.x = 1.0;
+
+        console.log(this.dotCube);
 
 
         this.dotScene.add(this.dotCube);
@@ -125,7 +145,9 @@ class DotsFloor {
 
 
     _Update() {
+        this.animationValue = (this.animationValue + 0.025) % 2.0;
 
+        this.dotCube.scale.x = Math.min(1.0, this.animationValue);
     }
 
 }
@@ -184,6 +206,9 @@ class RenderScene {
         this.scene = dotsFloor.GetDotScene();
         this.camera = dotsFloor.GetCamera();
         this.cameraController = dotsFloor.GetCameraController();
+
+
+        this.dotsUpdater = dotsFloor;
 
 
         // this.camera.far = 32.0;
@@ -248,7 +273,7 @@ class RenderScene {
 
 
             // this.camera.translateZ(0.01);
-
+            this.dotsUpdater._Update();
             this._Render();
         }
     }
