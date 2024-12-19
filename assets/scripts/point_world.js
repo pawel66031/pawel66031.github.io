@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 
+const sqrt2 = Math.sqrt(2);
 
 function vh(percent) {
     var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
@@ -27,7 +28,8 @@ class DotsFloor {
 
         this.dotScene = new THREE.Scene();
         this.dotScene.background = new THREE.Color(0x252525)
-        this.camera = new THREE.OrthographicCamera(-20.0, 20.0, -10.0, 10.0, 0.01, 2000.0);
+        // this.camera = new THREE.OrthographicCamera(-20.0, 20.0, -10.0, 10.0, 0.1, 2000.0);
+        this.camera = new THREE.OrthographicCamera(-0.68, 0.68, 1.0, -1.0, 0.1, 2000.0);
         // this.camera = new THREE.PerspectiveCamera(54.0, 1.0, 0.1, 100.0);
 
         if (size_x !== undefined) this.size_x = size_x;
@@ -38,14 +40,7 @@ class DotsFloor {
         const aspectRatio = window.innerWidth / window.innerHeight;
 
         // this.camera = new THREE.OrthographicCamera(-20.0, 20.0, -10.0, 10.0, 0.1, 200.0);
-        // this.camera.position.x = 5;
-        this.camera.position.y = 5.0;
-        // this.camera.position.z = 5;
-
-        this.camera.rotateX(-Math.PI * 0.5);
-        this.camera.rotateZ(Math.PI * 0.25);
-        // this.camera.rotateX(Math.PI * 0.25);
-        // this.camera.rotateZ(-Math.PI * 0.75);
+        this.camera.position.z = 50;
 
         /* Dot floor generator */
         const geometry = new THREE.BufferGeometry();
@@ -55,12 +50,18 @@ class DotsFloor {
         const size = 40;
         const halfSize = size / 2.0;
 
-        for (var i = 0; i < 40; ++i) {
-            for (var j = 0; j < 40; ++j) {
-                positions.push(-halfSize + i, -0.1, -halfSize + j);
+        const degree = Math.PI * 0.25;
+
+        for (var i = 0; i < size; ++i) {
+            for (var j = 0; j < size; ++j) {
+
+                // const x = -halfSize + i;
+                // const y = -halfSize + j;
+
+                // positions.push((x * Math.cos(degree) - y * Math.sin(degree)), 0.0, x * Math.sin(degree) + y * Math.cos(degree));
+                positions.push(-halfSize + i + 0.5, 0.0, -halfSize + j + 0.5);
             }
         }
-        console.log(positions);
 
         geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
 
@@ -73,6 +74,42 @@ class DotsFloor {
         this.dotFloor = new THREE.Points(geometry, material);
 
         this.dotScene.add(this.dotFloor);
+
+        /* Empty object to parent with camera */
+        const emptyCamera = new THREE.Object3D();
+        this.dotScene.add(emptyCamera);
+
+        console.log(emptyCamera);
+
+        emptyCamera.attach(this.camera);
+
+        /* To move camera, change those values */
+        emptyCamera.rotateY(Math.PI * 0.25);
+        // emptyCamera.rotateX(0.9554 - Math.PI * 0.5);
+        emptyCamera.rotateX(-0.6154);
+        // emptyCamera.rotateX(Math.PI * 0.195);
+        // emptyCamera.rotateX(-0.9553)
+
+        // emptyCamera.position.y = -200.0;
+
+
+        /* Test Cube for Debugging */
+        const materialDebug = new THREE.PointsMaterial({
+            size: 8.0,
+            color: 0xFF00FF
+        });
+
+        const box = new THREE.BoxGeometry(3, 1, 1, 3);
+        this.dotCube = new THREE.Points(box, materialDebug);
+
+        // this.dotCube.translateX(0.5);
+        this.dotCube.translateY(0.5);
+        // this.dotCube.translateZ(0.5);
+
+
+        this.dotScene.add(this.dotCube);
+
+        this.cameraController = emptyCamera;
     }
 
     GetDotScene() {
@@ -81,6 +118,14 @@ class DotsFloor {
 
     GetCamera() {
         return this.camera;
+    }
+    GetCameraController() {
+        return this.cameraController;
+    }
+
+
+    _Update() {
+
     }
 
 }
@@ -94,7 +139,6 @@ class RenderScene {
             this.bgElement = divElement;
 
             // Delete img as a placeholder for 3D view
-            // this.bgElement.getElementsByTagName("img")[0].remove();
             this.bgElement.innerHTML = "";
 
             this.bgWidth = this.bgElement.offsetWidth;
@@ -106,7 +150,7 @@ class RenderScene {
     _Initialize() {
         this.scene = new THREE.Scene();
         // this.camera = new THREE.PerspectiveCamera();
-        this.camera = new THREE.PerspectiveCamera(40.0, 1.0, 0.1, 8.0);;
+        this.camera = new THREE.PerspectiveCamera(40.0, 1.0, 0.1, 8.0);
         this.sceneOffset = 0.0;
 
         // Set Timer
@@ -139,38 +183,10 @@ class RenderScene {
         dotsFloor.InitScene();
         this.scene = dotsFloor.GetDotScene();
         this.camera = dotsFloor.GetCamera();
-
-        // this.planeMesh = contour.GetPlaneMesh();
-        // this.scene.add(this.planeMesh);
-
-        // this.camera = contour.GetCamera();
-        // this.scene.add(this.camera);
-
-        this.camera.far = 32.0;
+        this.cameraController = dotsFloor.GetCameraController();
 
 
-
-        // // **************************** //
-        // //      Background Canvas       //
-        // // **************************** //
-        // this.bgCanvas = document.getElementById("hero-3d-background");
-        // this.bgContext = this.bgCanvas.getContext("2d");
-
-        // this.bgCanvas.width = (this.bgWidth * 0.5);
-        // this.bgCanvas.height = (this.bgHeight * 0.5);
-        // this.bgCanvas.style = "width: 100%;";
-
-        // We need another canvas for displaying render (the second canvas will be blured)
-
-        // // **************************** //
-        // //        Second Canvas         //
-        // // **************************** //
-        // this.secondCanvas = document.getElementById("hero-3d-content");
-
-        // this.secondContext = this.secondCanvas.getContext("2d");
-
-        // this.secondCanvas.width = this.bgWidth - 2 * this.sceneOffset;
-        // this.secondCanvas.height = this.bgHeight - 2 * this.sceneOffset;
+        // this.camera.far = 32.0;
 
         this._OnWindowResize();
 
@@ -188,60 +204,30 @@ class RenderScene {
     }
 
     _OnWindowResize() {
-        const frustumSize = 20;
+        const frustumSize = 10;
 
 
         this.bgWidth = this.bgElement.offsetWidth;
         this.bgHeight = window.innerHeight;
 
         this.camera.aspect = this.bgWidth / this.bgHeight;
+        const aspect = this.bgWidth / this.bgHeight;
         this.camera.updateProjectionMatrix();
 
         this.render.setSize(this.bgWidth, this.bgHeight);
 
         this.sceneOffset = Math.max(20, vmin(4)) + 12;
 
-        // this.bgCanvas.width = this.bgWidth * 0.5;
-        // this.bgCanvas.height = this.bgHeight * 0.5;
-
-        // this.secondCanvas.width = this.bgWidth - 2 * this.sceneOffset;
-        // this.secondCanvas.height = this.bgHeight - 2 * this.sceneOffset;
-
-        this.camera.left = - 0.5 * frustumSize * this.camera.aspect / 2;
-        this.camera.right = 0.5 * frustumSize * this.camera.aspect / 2;
+        this.camera.left = -0.5 * frustumSize * aspect;
+        this.camera.right = 0.5 * frustumSize * aspect;
         this.camera.top = frustumSize / 2;
-        this.camera.bottom = - frustumSize / 2;
+        this.camera.bottom = -frustumSize / 2;
         this.camera.updateProjectionMatrix();
 
     }
 
     _Render() {
-        // this.render.autoClear = true;
-
-        // this.render.setSize(this.bgWidth * 0.5, this.bgHeight * 0.5);
-        // this.render.setViewport(0, 0, this.bgWidth * 0.5, this.bgHeight * 0.5);
         this.render.render(this.scene, this.camera);
-
-
-        // this.bgContext.fillStyle = "#4c4b16";
-        // this.bgContext.fillRect(0, 0, this.bgWidth, this.bgHeight);
-        // this.bgContext.drawImage(this.render.domElement, 0, 0)
-
-        // ################## //
-        // #  Second Canvas # //
-        // ################## //
-
-        // this.render.setSize(this.bgWidth - (2 * this.sceneOffset), this.bgHeight - (2 * this.sceneOffset));
-        // this.render.setViewport(-this.sceneOffset, -this.sceneOffset, this.bgWidth, this.bgHeight);
-        // this.render.render(this.scene, this.camera);
-
-        // this.secondContext.fillStyle = "#4c4b16";
-        // this.secondContext.fillRect(0, 0, this.bgWidth, this.bgHeight);
-        // this.secondContext.drawImage(this.render.domElement, 0, 0)
-
-        // this.render.autoClear = false;
-        // context.drawImage(renderer.domElement, 0, 0);
-
     }
 
     Animate() {
@@ -254,8 +240,13 @@ class RenderScene {
                 this.planeMesh.material.uniforms.u_time.value = this.timeElapsed;
             }
             // this.camera.rotateZ(0.01);
-            this.camera.position.setX((this.camera.position.x + 0.01) % 1);
-            this.camera.position.setZ((this.camera.position.z + 0.01) % 1);
+            this.cameraController.position.setX((this.cameraController.position.x - 0.01) % 1);
+            this.cameraController.position.setZ(((this.cameraController.position.z - 0.01) % 1));
+
+
+            // this.camera.position.setZ(((this.camera.position.z - 0.01) % sqrt2));
+
+
             // this.camera.translateZ(0.01);
 
             this._Render();
