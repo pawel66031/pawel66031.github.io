@@ -2,6 +2,13 @@ import * as THREE from 'three';
 
 const sqrt2 = Math.sqrt(2);
 
+const DotObject_AnimationType = {
+    ROTATE: 'ROTATE',
+    FOUNTAIN: 'FOUNTAIN',
+
+}
+
+
 function vh(percent) {
     var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     return (percent * h) / 100;
@@ -20,9 +27,42 @@ function vmax(percent) {
     return Math.max(vh(percent), vw(percent));
 }
 
+class DotsAnimationObject extends THREE.Object3D {
+    constructor(offset, duration) {
+        super(THREE.Object3D);
+
+        this.frameTime = offset;
+        this.animationDuration = duration;
+    }
+
+    UpdateAnimation(delta) {
+        this.frameTime += delta;
+    }
+}
+
+class FountainDotsObject extends DotsAnimationObject {
+    constructor(offsetAnimation, duration) {
+        super(offsetAnimation, duration);
+
+        console.log(this.frameTime);
+    }
+
+    UpdateAnimation(delta) {
+
+
+        // Always put super at the end in order to update frame time
+        super.UpdateAnimation(delta);
+    }
+}
+
 
 class DotsFloor {
     constructor(size_x, size_y) {
+        // Variables for controlling animation
+        this.actionsToPlay = [];
+
+
+        //  Dots size
         this.size_x = 128;
         this.size_y = 128;
 
@@ -49,13 +89,13 @@ class DotsFloor {
 
         const positions = [];
 
-        const size = 40;
-        const halfSize = size / 2.0;
+        // const size = 40;
+        const halfSize = this.size_x * 0.5;
 
         const degree = Math.PI * 0.25;
 
-        for (var i = 0; i < size; ++i) {
-            for (var j = 0; j < size; ++j) {
+        for (var i = 0; i < this.size_x; ++i) {
+            for (var j = 0; j < this.size_y; ++j) {
 
                 // const x = -halfSize + i;
                 // const y = -halfSize + j;
@@ -91,32 +131,12 @@ class DotsFloor {
 
 
         /* Test Cube for Debugging */
-        const materialDebug = new THREE.PointsMaterial({
-            size: 3.0,
-            color: 0xFF00FF
-        });
+
 
         /* Geometry creator */
         // const box = new THREE.BoxGeometry(1, 1, 1);
-        const box = new THREE.BufferGeometry();
-        const boxGeometry = [];
+        this.dotCube = this.PistonGeometry();
 
-        const BoxSizeX = 4;
-        const BoxSizeY = 4;
-        const BoxSizeZ = 2;
-
-        for (var i = 0; i <= BoxSizeX; ++i) {
-            for (var j = 0; j <= BoxSizeY; ++j) {
-                for (var k = 0; k <= BoxSizeZ; ++k) {
-                    boxGeometry.push(i, j, k);
-                }
-            }
-        }
-
-        box.setAttribute('position', new THREE.Float32BufferAttribute(boxGeometry, 3));
-        console.log(boxGeometry);
-
-        this.dotCube = new THREE.Points(box, materialDebug);
 
         this.dotCube.translateX(0);
         this.dotCube.translateY(0.5);
@@ -129,8 +149,48 @@ class DotsFloor {
 
         this.dotScene.add(this.dotCube);
 
+        const boxGeometry = new THREE.BoxGeometry(1, 2, 1, 1, 2, 1);
+
+        const boxMesh = new THREE.Mesh(boxGeometry, new THREE.MeshBasicMaterial({ color: 0x252525 }))
+        const boxPoint = new THREE.Points(boxGeometry, material);
+
+        this.dotScene.add(boxMesh);
+
+
         this.cameraController = emptyCamera;
+
+        // Testing purpose
+        var dotAnimation = new FountainDotsObject(-20, 10);
     }
+
+    // User defined list of Geometry
+    PistonGeometry() {
+        const materialDebug = new THREE.PointsMaterial({
+            size: 3.0,
+            color: 0xFFFFFF
+        });
+
+        const box = new THREE.BufferGeometry();
+        const boxGeometry = [];
+
+        const BoxSizeX = 1;
+        const BoxSizeY = 2;
+        const BoxSizeZ = 1;
+
+        for (var i = 0; i <= BoxSizeX; ++i) {
+            for (var j = 0; j <= BoxSizeY; ++j) {
+                for (var k = 0; k <= BoxSizeZ; ++k) {
+                    boxGeometry.push(i, j, k);
+                }
+            }
+        }
+
+        box.setAttribute('position', new THREE.Float32BufferAttribute(boxGeometry, 3));
+        console.log(boxGeometry);
+
+        return new THREE.Points(box, materialDebug);
+    }
+
 
     GetDotScene() {
         return this.dotScene;
@@ -145,9 +205,17 @@ class DotsFloor {
 
 
     _Update() {
-        this.animationValue = (this.animationValue + 0.025) % 2.0;
+        // this.animationValue = (this.animationValue + 0.025) % 2.0;
 
-        this.dotCube.scale.x = Math.min(1.0, this.animationValue);
+        /* Point Fontain */
+        this.animationValue = (this.animationValue + 0.05) % (Math.PI * 0.5);
+
+        // Play each defined action
+        this.actionsToPlay.forEach(element => {
+            element.Update();
+        });
+
+        this.dotCube.scale.y = Math.max(0.0, Math.sin(this.animationValue));
     }
 
 }
@@ -184,11 +252,8 @@ class RenderScene {
             precision: "lowp"
         });
 
-        // alert("Width: " + this.bgWidth + ", Height: " + this.bgHeight);
-
         this.render.setPixelRatio(window.devicePixelRatio);
         this.render.setSize(this.bgWidth, this.bgHeight);
-        // this.render.setSize(522, 991);
         this.render.setAnimationLoop(() => {
             this.Animate();
         });
