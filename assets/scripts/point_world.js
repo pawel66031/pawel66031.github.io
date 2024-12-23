@@ -39,7 +39,7 @@ class DotsAnimationObject extends THREE.Group {
 
         super();
 
-        this.frameTime = offset;
+        this.frameTime = -offset;
         this.animationDuration = duration;
 
         this.isAnimationFinished = false;
@@ -57,6 +57,22 @@ class DotsAnimationObject extends THREE.Group {
         this.frameTime += delta;
     }
 
+    SetFrameTime(value) {
+        this.frameTime = value;
+    }
+
+    GetFrameTime() {
+        return this.frameTime;
+    }
+
+    SetDuration(value) {
+        this.animationDuration = value;
+    }
+
+    GetDuration() {
+        return this.animationDuration;
+    }
+
     InitializeDotObject() {
 
     }
@@ -64,9 +80,9 @@ class DotsAnimationObject extends THREE.Group {
 
 class FountainDotsObject extends DotsAnimationObject {
 
-    constructor(offsetAnimation, duration) {
+    constructor(offset, duration) {
 
-        super(offsetAnimation, duration);
+        super(offset, duration);
 
         console.log(this.frameTime);
 
@@ -74,7 +90,7 @@ class FountainDotsObject extends DotsAnimationObject {
 
     UpdateAnimation(delta) {
 
-        this.scale.y = 0.0 * (this.frameTime / this.animationDuration);
+        this.scale.y = (this.frameTime / this.animationDuration);
 
         // Always put super at the end in order to update frame time
         super.UpdateAnimation(delta);
@@ -115,6 +131,11 @@ class DotsFloor {
 
         if (size_x !== undefined) this.size_x = size_x;
         if (size_y !== undefined) this.size_y = size_y;
+    }
+
+    AppendDotObject(dotObject) {
+        this.dotScene.add(dotObject);
+        this.actionsToPlay.push(dotObject);
     }
 
     InitScene() {
@@ -174,8 +195,11 @@ class DotsFloor {
 
         /* Geometry creator */
         // const box = new THREE.BoxGeometry(1, 1, 1);
-        // this.dotCube = this.PistonGeometry();
+        // this.dotCube = this.dotObjects[0].clone();
         this.dotCube = this.dotObjects[0].clone();
+        this.dotCube.SetFrameTime(0.0);
+        this.dotCube.SetDuration(2.0);
+
         this.dotCube.renderOrder = 3;
 
 
@@ -190,7 +214,8 @@ class DotsFloor {
         console.log(this.dotCube);
 
 
-        this.dotScene.add(this.dotCube);
+        // this.dotScene.add(this.dotCube);
+        this.AppendDotObject(this.dotCube);
 
         // const boxGeometry = new THREE.BoxGeometry(4, 4, 4, 1, 1, 1);
 
@@ -231,7 +256,8 @@ class DotsFloor {
         //  .....
         //
 
-        const BigBoxGroup = new THREE.Group();
+        // const BigBoxGroup = new THREE.Group();
+        const BigBoxGroup = new FountainDotsObject(0.5, 2.0);
 
         const BigBoxGeometry = new THREE.BoxGeometry(5.0, 5.0, 5.0, 1, 1, 1);
         const BigBoxMeshMaterial = new THREE.MeshBasicMaterial({ color: 0x252525 });
@@ -333,7 +359,6 @@ class DotsFloor {
         return this.cameraController;
     }
 
-
     _Update(delta) {
 
         // Detect if camera is far away
@@ -353,8 +378,8 @@ class DotsFloor {
 
             this.actionsToPlay.forEach(element => {
 
-                // element.translateX(1.0);
-                // element.translateZ(1.0);
+                element.translateX(delta);
+                element.translateZ(delta);
 
             });
 
@@ -363,7 +388,6 @@ class DotsFloor {
 
         // Play each defined action
         this.actionsToPlay.forEach(element => {
-
             element.UpdateAnimation(delta);
 
         });
@@ -377,7 +401,7 @@ class DotsFloor {
             }
 
         }
-        this.dotCube.rotateY(delta);
+        this.dotCube.rotation.y = Math.min(Math.PI * 2, this.dotCube.rotation.y + delta);
         // this.dotCube.scale.y = Math.sin(this.animationValue);
     }
 
