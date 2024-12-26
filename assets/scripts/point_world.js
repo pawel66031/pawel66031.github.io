@@ -32,6 +32,81 @@ function IsAnimationFinished(val) {
     return val.isAnimationFinished;
 }
 
+class StandardMaterial {
+    constructor() {
+        // Prepare material
+        this.materialPoint = new THREE.PointsMaterial({
+            depthTest: false,
+            size: 2.5,
+            color: 0xFFFFFF
+        });
+        this.materialPoint.size = 2.5;
+    }
+    PointMaterial() {
+        return this.materialPoint;
+    }
+}
+
+class PredefinedBuffers {
+    static BoxPoints(BoxSizeX = 1, BoxSizeY = 1, BoxSizeZ = 1, offsetX = 0.0, offsetY = 0.0, offsetZ = 0.0) {
+        const BigBoxBuffer = new THREE.BufferGeometry();
+
+        const boxGeometry = [];
+
+        for (var i = 0; i <= BoxSizeX; ++i) {
+
+            for (var j = 0; j <= BoxSizeY; ++j) {
+
+                for (var k = 0; k <= BoxSizeZ; ++k) {
+
+                    // Optimize this buffer (don't render unnecessary points)
+                    if ((i == 0 || j == 0 || k == 0) || (i == BoxSizeX || j == BoxSizeY || k == BoxSizeZ)) {
+                        boxGeometry.push(offsetX + i - BoxSizeX * 0.5, offsetY + j - BoxSizeY * 0.5, offsetZ + k - BoxSizeZ * 0.5);
+                    }
+
+
+                }
+
+            }
+
+        }
+
+        BigBoxBuffer.setAttribute('position', new THREE.Float32BufferAttribute(boxGeometry, 3));
+
+        // return new THREE.Points(BigBoxBuffer, this.dotMaterial);
+        return new THREE.Points(BigBoxBuffer, standardMaterials.PointMaterial());
+    }
+}
+
+class PredefinedDotAnimation {
+    static Footstep(offsetX = 0.0, offsetY = 0.0, offsetZ = 0.0) {
+        var steps = 30;
+        var animationSets = [];
+
+        for (var i = 0; i <= steps; ++i) {
+            var fountainObject = new FountainDotsObject(i * 0.1, 0.8);
+            fountainObject.position.x = (steps * 0.5) - i;
+            fountainObject.position.z = i % 2;
+            // fountainObject.position.y = 0.5;
+
+            const BigBoxGeometry = new THREE.BoxGeometry(1.0, 1.0, 1.0, 1, 1, 1);
+            const BigBoxMeshMaterial = new THREE.MeshBasicMaterial({ color: 0x252525 });
+            const BigBoxMesh = new THREE.Mesh(BigBoxGeometry, BigBoxMeshMaterial);
+
+            fountainObject.add(BigBoxMesh);
+            // fountainObject.add(PredefinedBuffers.BoxPoints(1, 1, 1, 0.0, 0.5, 0.0));
+            fountainObject.add(PredefinedBuffers.BoxPoints(1, 1, 1, 0.0, 0.5, 0.0));
+
+            animationSets.push(fountainObject);
+        }
+
+        return animationSets;
+    }
+
+    static RotatingCubes() {
+
+    }
+}
 
 class DotsAnimationObject extends THREE.Group {
 
@@ -84,15 +159,18 @@ class FountainDotsObject extends DotsAnimationObject {
 
         super(offset, duration);
 
-        console.log(this.frameTime);
+        // console.log(this.frameTime);
 
     }
 
     UpdateAnimation(delta) {
 
-        this.scale.y = (this.frameTime / this.animationDuration);
+        if (this.frameTime >= 0.0) {
+            this.scale.y = Math.sin((this.frameTime / this.animationDuration) * Math.PI);
+            // this.scale.y = 1.0;
 
-        // Always put super at the end in order to update frame time
+            // Always put super at the end in order to update frame time
+        }
         super.UpdateAnimation(delta);
     }
 
@@ -108,15 +186,10 @@ class DotsFloor {
         this.actionsToPlay = [];
         this.candidateToRemove = [];
 
-        this.dotMaterial = new THREE.PointsMaterial({
-            depthTest: false,
-            size: 3.0,
-            color: 0xFFFFFF
-        });
-
         // Timer
-        this.timer = new THREE.Clock();
-
+        // this.timer = new THREE.Clock();
+        this.addTimer = 0.0;
+        this.addedCounter = 0;
 
         //  Dots size
         this.size_x = 128;
@@ -172,7 +245,8 @@ class DotsFloor {
         geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
 
 
-        this.dotFloor = new THREE.Points(geometry, this.dotMaterial);
+        // this.dotFloor = new THREE.Points(geometry, this.dotMaterial);
+        this.dotFloor = new THREE.Points(geometry, standardMaterials.PointMaterial());
         this.dotFloor.renderOrder = 2;
 
         this.dotScene.add(this.dotFloor);
@@ -181,7 +255,7 @@ class DotsFloor {
         const emptyCamera = new THREE.Object3D();
         this.dotScene.add(emptyCamera);
 
-        this.PrepareDotObjects();
+        // this.PrepareDotObjects();
 
         emptyCamera.attach(this.camera);
 
@@ -196,35 +270,31 @@ class DotsFloor {
         /* Geometry creator */
         // const box = new THREE.BoxGeometry(1, 1, 1);
         // this.dotCube = this.dotObjects[0].clone();
-        this.dotCube = this.dotObjects[0].clone();
-        this.dotCube.SetFrameTime(0.0);
-        this.dotCube.SetDuration(2.0);
+        // this.dotCube = this.dotObjects[0].clone();
+        // this.dotCube.SetFrameTime(0.0);
+        // this.dotCube.SetDuration(2.0);
 
-        this.dotCube.renderOrder = 3;
+        // this.dotCube.renderOrder = 3;
 
 
-        this.dotCube.translateX(0);
-        this.dotCube.translateY(0.5);
-        this.dotCube.translateZ(0);
+        // this.dotCube.translateX(0);
+        // this.dotCube.translateY(0.5);
+        // this.dotCube.translateZ(0);
 
-        this.dotCube.rotateY(Math.PI * 0.5);
+        // this.dotCube.rotateY(Math.PI * 0.5);
 
-        this.dotCube.scale.x = 1.0;
+        // this.dotCube.scale.x = 1.0;
 
-        console.log(this.dotCube);
+        // console.log(this.dotCube);
 
 
         // this.dotScene.add(this.dotCube);
-        this.AppendDotObject(this.dotCube);
+        // this.AppendDotObject(this.dotCube);
 
-        // const boxGeometry = new THREE.BoxGeometry(4, 4, 4, 1, 1, 1);
-
-        // const boxMesh = new THREE.Mesh(boxGeometry, new THREE.MeshBasicMaterial({ color: 0x25FFFF }))
-        // const boxPoint = new THREE.Points(boxGeometry, this.dotMaterial);
-
-        // this.dotScene.add(boxMesh);
-        // this.dotScene.add(boxPoint);
-
+        // Add footstep animation
+        PredefinedDotAnimation.Footstep().forEach(element => {
+            this.AppendDotObject(element);
+        })
 
         this.cameraController = emptyCamera;
 
@@ -265,39 +335,40 @@ class DotsFloor {
 
         BigBoxGroup.add(BigBoxMesh);
 
-        // Buffer points
-        const BigBoxBuffer = new THREE.BufferGeometry();
+        // // Buffer points
+        // const BigBoxBuffer = new THREE.BufferGeometry();
 
-        const boxGeometry = [];
-
-
-        const BoxSizeX = 5;
-        const BoxSizeY = 5;
-        const BoxSizeZ = 5;
-
-        for (var i = 0; i <= BoxSizeX; ++i) {
-
-            for (var j = 0; j <= BoxSizeY; ++j) {
-
-                for (var k = 0; k <= BoxSizeZ; ++k) {
-
-                    // Optimize this buffer (don't render unnecessary points)
-                    if ((i == 0 || j == 0 || k == 0) || (i == BoxSizeX || j == BoxSizeY || k == BoxSizeZ)) {
-                        boxGeometry.push(i - BoxSizeX * 0.5, j - BoxSizeY * 0.5, k - BoxSizeZ * 0.5);
-                    }
+        // const boxGeometry = [];
 
 
-                }
+        // const BoxSizeX = 5;
+        // const BoxSizeY = 5;
+        // const BoxSizeZ = 5;
 
-            }
+        // for (var i = 0; i <= BoxSizeX; ++i) {
 
-        }
+        //     for (var j = 0; j <= BoxSizeY; ++j) {
 
-        BigBoxBuffer.setAttribute('position', new THREE.Float32BufferAttribute(boxGeometry, 3));
+        //         for (var k = 0; k <= BoxSizeZ; ++k) {
 
-        const BigBoxPoints = new THREE.Points(BigBoxBuffer, this.dotMaterial);
+        //             // Optimize this buffer (don't render unnecessary points)
+        //             if ((i == 0 || j == 0 || k == 0) || (i == BoxSizeX || j == BoxSizeY || k == BoxSizeZ)) {
+        //                 boxGeometry.push(i - BoxSizeX * 0.5, j - BoxSizeY * 0.5, k - BoxSizeZ * 0.5);
+        //             }
 
-        BigBoxGroup.add(BigBoxPoints);
+
+        //         }
+
+        //     }
+
+        // }
+
+        // BigBoxBuffer.setAttribute('position', new THREE.Float32BufferAttribute(boxGeometry, 3));
+
+        // const BigBoxPoints = new THREE.Points(BigBoxBuffer, this.dotMaterial);
+        // const BigBoxPoints = PredefinedBuffers.BoxPoints(5, 5, 5);
+
+        BigBoxGroup.add(PredefinedBuffers.BoxPoints(5, 5, 5));
 
         this.dotObjects.push(BigBoxGroup);
 
@@ -368,28 +439,36 @@ class DotsFloor {
 
         if (this.animationValue < valueMeasure) {
 
-            this.dotCube.position.z += 1.0;
-            this.dotCube.position.x += 1.0;
-
-            if (this.dotCube.position.x > 12.0) {
-                this.dotCube.position.z = -12.0;
-                this.dotCube.position.x = -12.0;
-            }
-
             this.actionsToPlay.forEach(element => {
+                element.position.x += 1.0;
+                element.position.z += 1.0;
 
-                element.translateX(delta);
-                element.translateZ(delta);
+                if (element.position.x > 12.0) {
+                    element.position.z = -12.0;
+                    element.position.x = -12.0;
+                }
+            })
+            // this.dotCube.position.z += 1.0;
+            // this.dotCube.position.x += 1.0;
 
-            });
-
-
+            // if (this.dotCube.position.x > 12.0) {
+            //     this.dotCube.position.z = -12.0;
+            //     this.dotCube.position.x = -12.0;
+            // }
         }
+
+        // this.actionsToPlay.forEach(element => {
+
+        //     element.translateX(delta);
+        //     // element.translateZ(delta);
+
+        // });
+
+
 
         // Play each defined action
         this.actionsToPlay.forEach(element => {
             element.UpdateAnimation(delta);
-
         });
 
 
@@ -397,11 +476,25 @@ class DotsFloor {
 
             // Delete objects after finished animation
             if (this.actionsToPlay[i].isAnimationFinished) {
+                // console.log(this.dotScene);
+                this.dotScene.remove(this.actionsToPlay[i]);
                 this.actionsToPlay.splice(i, 1);
             }
 
         }
-        this.dotCube.rotation.y = Math.min(Math.PI * 2, this.dotCube.rotation.y + delta);
+
+        // Add fountain
+        if (this.addTimer >= 4.0) {
+            this.addTimer -= 4.0;
+            PredefinedDotAnimation.Footstep(this.addedCounter - 16).forEach(element => {
+                this.AppendDotObject(element);
+            })
+
+            this.addedCounter = ((this.addedCounter + 8) % 32);
+        }
+        this.addTimer += delta;
+
+        // this.dotCube.rotation.y = Math.min(Math.PI * 2, this.dotCube.rotation.y + delta);
         // this.dotCube.scale.y = Math.sin(this.animationValue);
     }
 
@@ -525,6 +618,8 @@ class RenderScene {
     }
 
 }
+
+const standardMaterials = new StandardMaterial();
 
 const BG_Hero_Scene = new RenderScene(
     document.getElementsByClassName("portfolio-hero-section")[0]
