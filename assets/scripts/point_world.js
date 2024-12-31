@@ -38,7 +38,7 @@ class StandardMaterial {
         this.materialPoint = new THREE.PointsMaterial({
             depthTest: false,
             // size: 2.5,
-            size: 2.5,
+            size: 4.0,
             color: 0xFFFFFF
         });
 
@@ -98,14 +98,24 @@ class PredefinedBuffers {
 }
 
 class PredefinedDotAnimation {
-    static Footstep(offsetX = 0.0, offsetY = 0.0, offsetZ = 0.0) {
+
+
+    static Footstep(offsetX = 0.0, offsetY = 0.0, offsetZ = 0.0, offsetAnimation = 0.0, offsetDurationAnimation = 0.0) {
         var steps = 10;
         var animationSets = [];
 
         for (var i = 0; i <= steps; ++i) {
-            var fountainObject = new FountainDotsObject(i * 1.9, 1.6);
-            fountainObject.position.x = (steps * 0.5) - 3 * i;
-            fountainObject.position.z = (i % 2) * 3;
+            // var fountainObject = new FountainDotsObject(i * 1.9, 1.6);
+            var fountainObject = new FountainDotsObject(offsetAnimation + (i * 0.3), offsetDurationAnimation + 0.3);
+
+            //      Footstep animation
+
+            // fountainObject.position.x = (steps * 0.5) - 3 * i;
+            // fountainObject.position.z = (i % 2) * 3;
+
+            fountainObject.position.x = offsetX + (steps * 0.5) - 3 * i;
+            fountainObject.position.z = offsetZ + (steps * 0.5) - 3 * i;
+
 
             const childObject = new THREE.Group();
 
@@ -127,17 +137,33 @@ class PredefinedDotAnimation {
         return animationSets;
     }
 
+
     static RotatingCubes() {
-        const rangeStart = 7;
-        const rangeSize = 6;
+        // const rangeStart = 7;
+        // const rangeSize = 6;
 
-        const range = rangeStart + (Math.random() * rangeSize);
+        // const range = rangeStart + (Math.random() * rangeSize);
+        var animationSets = [];
 
-        for (var i = 0; i <= range; ++i) {
-            var boxRotation = new BoxRotationDotsObject(0.0, 1.2);
+        // for (var i = 0; i <= range; ++i) {
+        var boxRotation = new BoxRotationDotsObject(0.0, 1.2);
 
-            box
-        }
+        const childObject = new THREE.Group();
+
+        const rotatingCubeGeometry = new THREE.BoxGeometry(3.0, 3.0, 3.0, 1, 1, 1);
+        const rotatingCubeMesh = new THREE.Mesh(rotatingCubeGeometry, standardMaterials.MeshStandardMaterial())
+
+        childObject.add(rotatingCubeMesh);
+        childObject.add(predefinedBuffers.BoxPoints(3, 3, 3, 0.0, 0.0, 0.0));
+
+        childObject.position.x = 1.5;
+        childObject.position.y = 1.5;
+
+        boxRotation.add(childObject);
+        animationSets.push(boxRotation);
+        // }
+
+        return animationSets;
     }
 }
 
@@ -208,7 +234,8 @@ class FountainDotsObject extends DotsAnimationObject {
                 this.visible = true;
             }
 
-            this.scale.y = Math.sin((this.frameTime / this.animationDuration) * Math.PI);
+            // this.scale.y = Math.sin((this.frameTime / this.animationDuration) * Math.PI);
+            this.scale.y = Math.sin((this.frameTime / this.animationDuration) * (Math.PI * 0.5));
             // this.scale.y = 1.0;
 
             // Always put super at the end in order to update frame time
@@ -347,6 +374,10 @@ class DotsFloor {
             this.AppendDotObject(element);
         })
 
+        PredefinedDotAnimation.RotatingCubes().forEach(element => {
+            this.AppendDotObject(element);
+        })
+
         this.cameraController = emptyCamera;
 
     }
@@ -446,9 +477,22 @@ class DotsFloor {
         // Add fountain
         if (this.addTimer >= 4.0) {
             this.addTimer = this.addTimer % 4.0;
-            PredefinedDotAnimation.Footstep(this.addedCounter - 16).forEach(element => {
+            // PredefinedDotAnimation.Footstep(this.addedCounter - 16).forEach(element => {
+
+            PredefinedDotAnimation.Footstep(6, 0, 6).forEach(element => {
                 this.AppendDotObject(element);
             })
+
+            for (var i = 1; i <= 2; ++i) {
+
+                PredefinedDotAnimation.Footstep(6 + (3 * i), 0, 6 - (3 * i), (i * 0.3), (i * 0.3)).forEach(element => {
+                    this.AppendDotObject(element);
+                })
+                PredefinedDotAnimation.Footstep(6 - 3 * i, 0, 6 + 3 * i, i * 0.3, i * 0.3).forEach(element => {
+                    this.AppendDotObject(element);
+                })
+
+            }
 
             this.addedCounter = ((this.addedCounter + 8) % 32);
         }
