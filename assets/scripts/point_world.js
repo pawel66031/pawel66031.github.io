@@ -28,27 +28,39 @@ function vmax(percent) {
 }
 
 
-function IsAnimationFinished(val) {
-    return val.isAnimationFinished;
-}
+// Standard Materials for referencing
 
 class StandardMaterial {
+    // Prepare material
     constructor() {
-        // Prepare material
+
+        // White Points Material
         this.materialPoint = new THREE.PointsMaterial({
             depthTest: false,
+            // size: 2.5,
             size: 2.5,
             color: 0xFFFFFF
         });
-        this.materialPoint.size = 2.5;
+
+        // Mesh Material for masking
+        this.materialMeshStandard = new THREE.MeshBasicMaterial({ color: 0x252525 });
+
     }
     PointMaterial() {
         return this.materialPoint;
     }
+
+    MeshStandardMaterial() {
+        return this.materialMeshStandard;
+    }
 }
 
 class PredefinedBuffers {
-    static BoxPoints(BoxSizeX = 1, BoxSizeY = 1, BoxSizeZ = 1, offsetX = 0.0, offsetY = 0.0, offsetZ = 0.0) {
+    constructor() {
+
+    }
+
+    BoxPoints(BoxSizeX = 1, BoxSizeY = 1, BoxSizeZ = 1, offsetX = 0.0, offsetY = 0.0, offsetZ = 0.0) {
         const BigBoxBuffer = new THREE.BufferGeometry();
 
         const boxGeometry = [];
@@ -73,29 +85,41 @@ class PredefinedBuffers {
 
         BigBoxBuffer.setAttribute('position', new THREE.Float32BufferAttribute(boxGeometry, 3));
 
-        // return new THREE.Points(BigBoxBuffer, this.dotMaterial);
         return new THREE.Points(BigBoxBuffer, standardMaterials.PointMaterial());
+    }
+
+    GetSmallBoxPoints() {
+        return this.boxPointsSmall;
+    }
+
+    GetMediumBoxPoints() {
+        return this.boxPointsMedium;
     }
 }
 
 class PredefinedDotAnimation {
     static Footstep(offsetX = 0.0, offsetY = 0.0, offsetZ = 0.0) {
-        var steps = 30;
+        var steps = 10;
         var animationSets = [];
 
         for (var i = 0; i <= steps; ++i) {
-            var fountainObject = new FountainDotsObject(i * 0.1, 0.8);
-            fountainObject.position.x = (steps * 0.5) - i;
-            fountainObject.position.z = i % 2;
-            // fountainObject.position.y = 0.5;
+            var fountainObject = new FountainDotsObject(i * 1.9, 1.6);
+            fountainObject.position.x = (steps * 0.5) - 3 * i;
+            fountainObject.position.z = (i % 2) * 3;
 
-            const BigBoxGeometry = new THREE.BoxGeometry(1.0, 1.0, 1.0, 1, 1, 1);
-            const BigBoxMeshMaterial = new THREE.MeshBasicMaterial({ color: 0x252525 });
+            const childObject = new THREE.Group();
+
+            const BigBoxGeometry = new THREE.BoxGeometry(3.0, 3.0, 3.0, 1, 1, 1);
+            const BigBoxMeshMaterial = standardMaterials.MeshStandardMaterial();
             const BigBoxMesh = new THREE.Mesh(BigBoxGeometry, BigBoxMeshMaterial);
 
-            fountainObject.add(BigBoxMesh);
-            // fountainObject.add(PredefinedBuffers.BoxPoints(1, 1, 1, 0.0, 0.5, 0.0));
-            fountainObject.add(PredefinedBuffers.BoxPoints(1, 1, 1, 0.0, 0.5, 0.0));
+            childObject.add(BigBoxMesh);
+            childObject.add(predefinedBuffers.BoxPoints(3, 3, 3, 0.0, 0.0, 0.0));
+
+
+            childObject.position.y = 1.5;
+
+            fountainObject.add(childObject);
 
             animationSets.push(fountainObject);
         }
@@ -104,9 +128,22 @@ class PredefinedDotAnimation {
     }
 
     static RotatingCubes() {
+        const rangeStart = 7;
+        const rangeSize = 6;
 
+        const range = rangeStart + (Math.random() * rangeSize);
+
+        for (var i = 0; i <= range; ++i) {
+            var boxRotation = new BoxRotationDotsObject(0.0, 1.2);
+
+            box
+        }
     }
 }
+
+
+
+
 
 class DotsAnimationObject extends THREE.Group {
 
@@ -159,6 +196,7 @@ class FountainDotsObject extends DotsAnimationObject {
 
         super(offset, duration);
 
+        this.visible = false
         // console.log(this.frameTime);
 
     }
@@ -166,6 +204,10 @@ class FountainDotsObject extends DotsAnimationObject {
     UpdateAnimation(delta) {
 
         if (this.frameTime >= 0.0) {
+            if (!this.isVisible) {
+                this.visible = true;
+            }
+
             this.scale.y = Math.sin((this.frameTime / this.animationDuration) * Math.PI);
             // this.scale.y = 1.0;
 
@@ -179,6 +221,15 @@ class FountainDotsObject extends DotsAnimationObject {
     }
 }
 
+class BoxRotationDotsObject extends DotsAnimationObject {
+    constructor(offset, duration) {
+
+        super(offset, duration);
+
+        this.visible = false
+
+    }
+}
 
 class DotsFloor {
     constructor(size_x, size_y) {
@@ -298,84 +349,6 @@ class DotsFloor {
 
         this.cameraController = emptyCamera;
 
-        // // Testing purpose
-        // var dotAnimation = new FountainDotsObject(-1.0, 1.0);
-        // var dotAnimation2 = new FountainDotsObject(-2.0, 1.0);
-
-
-        // dotAnimation.scale.y = 3.0;
-        // this.dotScene.add(dotAnimation);
-        // this.actionsToPlay.push(dotAnimation);
-        // this.dotScene.add(dotAnimation2);
-        // this.actionsToPlay.push(dotAnimation2);
-    }
-
-
-    PrepareDotObjects() {
-
-        this.dotObjects = [];
-
-        // ###########################
-        //        #1 Big box
-        // ###########################
-        //
-        //  .....
-        //  .....
-        //  .....
-        //  .....
-        //  .....
-        //
-
-        // const BigBoxGroup = new THREE.Group();
-        const BigBoxGroup = new FountainDotsObject(0.5, 2.0);
-
-        const BigBoxGeometry = new THREE.BoxGeometry(5.0, 5.0, 5.0, 1, 1, 1);
-        const BigBoxMeshMaterial = new THREE.MeshBasicMaterial({ color: 0x252525 });
-        const BigBoxMesh = new THREE.Mesh(BigBoxGeometry, BigBoxMeshMaterial);
-
-        BigBoxGroup.add(BigBoxMesh);
-
-        // // Buffer points
-        // const BigBoxBuffer = new THREE.BufferGeometry();
-
-        // const boxGeometry = [];
-
-
-        // const BoxSizeX = 5;
-        // const BoxSizeY = 5;
-        // const BoxSizeZ = 5;
-
-        // for (var i = 0; i <= BoxSizeX; ++i) {
-
-        //     for (var j = 0; j <= BoxSizeY; ++j) {
-
-        //         for (var k = 0; k <= BoxSizeZ; ++k) {
-
-        //             // Optimize this buffer (don't render unnecessary points)
-        //             if ((i == 0 || j == 0 || k == 0) || (i == BoxSizeX || j == BoxSizeY || k == BoxSizeZ)) {
-        //                 boxGeometry.push(i - BoxSizeX * 0.5, j - BoxSizeY * 0.5, k - BoxSizeZ * 0.5);
-        //             }
-
-
-        //         }
-
-        //     }
-
-        // }
-
-        // BigBoxBuffer.setAttribute('position', new THREE.Float32BufferAttribute(boxGeometry, 3));
-
-        // const BigBoxPoints = new THREE.Points(BigBoxBuffer, this.dotMaterial);
-        // const BigBoxPoints = PredefinedBuffers.BoxPoints(5, 5, 5);
-
-        BigBoxGroup.add(PredefinedBuffers.BoxPoints(5, 5, 5));
-
-        this.dotObjects.push(BigBoxGroup);
-
-
-        // #############################
-        //        #2 Small box
-        // #############################
     }
 
     // User defined list of Geometry
@@ -440,31 +413,18 @@ class DotsFloor {
         if (this.animationValue < valueMeasure) {
 
             this.actionsToPlay.forEach(element => {
+
                 element.position.x += 1.0;
                 element.position.z += 1.0;
 
                 if (element.position.x > 12.0) {
+
                     element.position.z = -12.0;
                     element.position.x = -12.0;
+
                 }
             })
-            // this.dotCube.position.z += 1.0;
-            // this.dotCube.position.x += 1.0;
-
-            // if (this.dotCube.position.x > 12.0) {
-            //     this.dotCube.position.z = -12.0;
-            //     this.dotCube.position.x = -12.0;
-            // }
         }
-
-        // this.actionsToPlay.forEach(element => {
-
-        //     element.translateX(delta);
-        //     // element.translateZ(delta);
-
-        // });
-
-
 
         // Play each defined action
         this.actionsToPlay.forEach(element => {
@@ -476,7 +436,7 @@ class DotsFloor {
 
             // Delete objects after finished animation
             if (this.actionsToPlay[i].isAnimationFinished) {
-                // console.log(this.dotScene);
+
                 this.dotScene.remove(this.actionsToPlay[i]);
                 this.actionsToPlay.splice(i, 1);
             }
@@ -485,7 +445,7 @@ class DotsFloor {
 
         // Add fountain
         if (this.addTimer >= 4.0) {
-            this.addTimer -= 4.0;
+            this.addTimer = this.addTimer % 4.0;
             PredefinedDotAnimation.Footstep(this.addedCounter - 16).forEach(element => {
                 this.AppendDotObject(element);
             })
@@ -494,8 +454,6 @@ class DotsFloor {
         }
         this.addTimer += delta;
 
-        // this.dotCube.rotation.y = Math.min(Math.PI * 2, this.dotCube.rotation.y + delta);
-        // this.dotCube.scale.y = Math.sin(this.animationValue);
     }
 
 }
@@ -513,7 +471,9 @@ class RenderScene {
 
             this.bgWidth = this.bgElement.offsetWidth;
             this.bgWidth = this.bgElement.offsetHeight;
-            // this.bgHeight = window.innerHeight;
+
+
+            this.viewSuspended = false;
         }
     }
 
@@ -540,10 +500,8 @@ class RenderScene {
 
         this.render.sortObjects = false;
 
-        // // Add render scene to HTML
+        // Add render scene to HTML
         this.bgElement.appendChild(this.render.domElement);
-
-        // this.secondContext.fillStyle = "#4c4b16";
 
 
         const dotsFloor = new DotsFloor();
@@ -571,7 +529,7 @@ class RenderScene {
     }
 
     _OnWindowResize() {
-        const frustumSize = 10;
+        const frustumSize = 20;
 
 
         this.bgWidth = this.bgElement.offsetWidth;
@@ -599,7 +557,14 @@ class RenderScene {
 
     Animate() {
         if (window.scrollY <= this.bgHeight) {
+
+            if (this.viewSuspended) {
+                this.clock.start();
+                this.viewSuspended = false;
+            }
+
             const delta = this.clock.getDelta();
+
             this.timeElapsed += delta;
 
 
@@ -615,11 +580,18 @@ class RenderScene {
             this.dotsUpdater._Update(delta);
             this._Render();
         }
+        else {
+            if (!this.viewSuspended) {
+                this.clock.stop();
+                this.viewSuspended = true;
+            }
+        }
     }
 
 }
 
 const standardMaterials = new StandardMaterial();
+const predefinedBuffers = new PredefinedBuffers();
 
 const BG_Hero_Scene = new RenderScene(
     document.getElementsByClassName("portfolio-hero-section")[0]
