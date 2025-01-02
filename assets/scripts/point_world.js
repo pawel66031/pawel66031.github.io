@@ -139,29 +139,35 @@ class PredefinedDotAnimation {
 
 
     static RotatingCubes() {
-        // const rangeStart = 7;
-        // const rangeSize = 6;
+        const rangeStart = 7;
+        const rangeSize = 13;
 
-        // const range = rangeStart + (Math.random() * rangeSize);
+        const range = rangeStart + (Math.random() * rangeSize);
         var animationSets = [];
 
-        // for (var i = 0; i <= range; ++i) {
-        var boxRotation = new BoxRotationDotsObject(0.0, 1.2);
+        for (var i = 0; i <= range; ++i) {
+            var boxRotation = new BoxRotationDotsObject(2.0 + (i * 0.1), 1.0);
 
-        const childObject = new THREE.Group();
+            const childObject = new THREE.Group();
 
-        const rotatingCubeGeometry = new THREE.BoxGeometry(3.0, 3.0, 3.0, 1, 1, 1);
-        const rotatingCubeMesh = new THREE.Mesh(rotatingCubeGeometry, standardMaterials.MeshStandardMaterial())
+            const rotatingCubeGeometry = new THREE.BoxGeometry(3.0, 3.0, 3.0, 1, 1, 1);
+            const rotatingCubeMesh = new THREE.Mesh(rotatingCubeGeometry, standardMaterials.MeshStandardMaterial())
 
-        childObject.add(rotatingCubeMesh);
-        childObject.add(predefinedBuffers.BoxPoints(3, 3, 3, 0.0, 0.0, 0.0));
+            childObject.add(rotatingCubeMesh);
+            childObject.add(predefinedBuffers.BoxPoints(3, 3, 3, 0.0, 0.0, 0.0));
 
-        childObject.position.x = 1.5;
-        childObject.position.y = 1.5;
+            childObject.position.z = 1.5;
+            childObject.position.y = 1.5;
 
-        boxRotation.add(childObject);
-        animationSets.push(boxRotation);
-        // }
+            boxRotation.add(childObject);
+            // boxRotation.position.z = 0.5;
+
+            boxRotation.position.z = -15.0 + Math.round(Math.random() * 30.0) + 0.5;
+            boxRotation.position.x = -15.0 + Math.round(Math.random() * 30.0);
+
+            animationSets.push(boxRotation);
+
+        }
 
         return animationSets;
     }
@@ -255,6 +261,64 @@ class BoxRotationDotsObject extends DotsAnimationObject {
 
         this.visible = false
 
+    }
+
+    UpdateAnimation(delta) {
+
+        const quarterPI = Math.PI * 0.25;
+        const halfPI = Math.PI * 0.5;
+
+        if (this.frameTime >= 0.0) {
+            if (!this.isVisible) {
+                this.visible = true;
+            }
+
+            // this.scale.y = Math.sin((this.frameTime / this.animationDuration) * Math.PI);
+            // this.rotation.x = (this.frameTime / this.animationDuration) * (Math.PI * 12.0);
+            // this.rotation.x = Math.sin((this.frameTime / this.animationDuration) * (Math.PI * 0.5)) * halfPI - halfPI;
+            // this.rotation.x = -halfPI + (this.frameTime / this.animationDuration) * (Math.PI * 0.5);
+            this.rotation.x = -halfPI + this.BounceAnimation(this.frameTime / this.animationDuration) * (Math.PI * 0.5);
+            // this.scale.y = 1.0;
+
+            // Always put super at the end in order to update frame time
+        }
+
+        //         float BLI_easing_bounce_ease_out(float time, float begin, float change, float duration)
+        // {
+        //   time /= duration;
+        //   if (time < (1 / 2.75f)) {
+        //     return change * (7.5625f * time * time) + begin;
+        //   }
+        //   if (time < (2 / 2.75f)) {
+        //     time -= (1.5f / 2.75f);
+        //     return change * ((7.5625f * time) * time + 0.75f) + begin;
+        //   }
+        //   if (time < (2.5f / 2.75f)) {
+        //     time -= (2.25f / 2.75f);
+        //     return change * ((7.5625f * time) * time + 0.9375f) + begin;
+        //   }
+        //   time -= (2.625f / 2.75f);
+        //   return change * ((7.5625f * time) * time + 0.984375f) + begin;
+        // }
+
+
+        super.UpdateAnimation(delta);
+    }
+
+    BounceAnimation(time) {
+        if (time < (1 / 2.75)) {
+            return (7.5625 * time * time);
+        }
+        if (time < (2 / 2.75)) {
+            time -= (1.5 / 2.75);
+            return ((7.5625 * time) * time + 0.75);
+        }
+        if (time < (2.5 / 2.75)) {
+            time -= (2.25 / 2.75);
+            return ((7.5625 * time) * time + 0.9375);
+        }
+        time -= 2.625 / 2.75;
+        return ((7.5625 * time) * time + 0.984375);
     }
 }
 
@@ -448,10 +512,10 @@ class DotsFloor {
                 element.position.x += 1.0;
                 element.position.z += 1.0;
 
-                if (element.position.x > 12.0) {
+                if (element.position.x > 24.0) {
 
-                    element.position.z = -12.0;
-                    element.position.x = -12.0;
+                    element.position.z = -16.0;
+                    element.position.x = -16.0;
 
                 }
             })
@@ -475,24 +539,33 @@ class DotsFloor {
         }
 
         // Add fountain
-        if (this.addTimer >= 4.0) {
-            this.addTimer = this.addTimer % 4.0;
+        if (this.addTimer >= 3.0) {
+            this.addTimer = this.addTimer % 3.0;
             // PredefinedDotAnimation.Footstep(this.addedCounter - 16).forEach(element => {
 
-            PredefinedDotAnimation.Footstep(6, 0, 6).forEach(element => {
+            // ##########   ROTATING ANIMATION   ##########
+
+            PredefinedDotAnimation.RotatingCubes().forEach(element => {
                 this.AppendDotObject(element);
             })
 
-            for (var i = 1; i <= 2; ++i) {
+            // ##########   FOOTSTEP ANIMATION   ##########
 
-                PredefinedDotAnimation.Footstep(6 + (3 * i), 0, 6 - (3 * i), (i * 0.3), (i * 0.3)).forEach(element => {
-                    this.AppendDotObject(element);
-                })
-                PredefinedDotAnimation.Footstep(6 - 3 * i, 0, 6 + 3 * i, i * 0.3, i * 0.3).forEach(element => {
-                    this.AppendDotObject(element);
-                })
+            // PredefinedDotAnimation.Footstep(6, 0, 6, 0).forEach(element => {
+            //     this.AppendDotObject(element);
+            // })
 
-            }
+            // for (var i = 1; i <= 4; ++i) {
+
+            //     PredefinedDotAnimation.Footstep(6 + (3 * i), 0, 6 - (3 * i), i * 0.3).forEach(element => {
+            //         this.AppendDotObject(element);
+            //         // console.log(element);
+            //     })
+            //     PredefinedDotAnimation.Footstep(6 - 3 * i, 0, 6 + 3 * i, i * 0.3).forEach(element => {
+            //         this.AppendDotObject(element);
+            //     })
+
+            // }
 
             this.addedCounter = ((this.addedCounter + 8) % 32);
         }
