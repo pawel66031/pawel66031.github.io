@@ -139,13 +139,32 @@ class PredefinedDotAnimation {
 
 
     static RotatingCubes() {
-        const rangeStart = 7;
-        const rangeSize = 13;
+        const rangeStart = 10;
+        const rangeSize = 2;
 
         const range = rangeStart + (Math.random() * rangeSize);
         var animationSets = [];
 
-        for (var i = 0; i <= range; ++i) {
+        var shufflePositions = []
+        var shuffleIndex = 0;
+
+        for (var i = 0; i <= 5; ++i) {
+            for (var j = 0; j <= 5; ++j) {
+                shufflePositions.push([i, j]);
+            }
+        }
+
+        shuffleIndex = shufflePositions.length;
+
+        for (var i = 0; i <= shuffleIndex; ++i) {
+
+            let randomIndex = Math.floor(shuffleIndex * Math.random());
+            --shuffleIndex
+
+            var temp = shufflePositions[shuffleIndex];
+            shufflePositions[shuffleIndex] = shufflePositions[randomIndex];
+            shufflePositions[randomIndex] = temp;
+
             var boxRotation = new BoxRotationDotsObject(2.0 + (i * 0.1), 1.0);
 
             const childObject = new THREE.Group();
@@ -162,11 +181,15 @@ class PredefinedDotAnimation {
             boxRotation.add(childObject);
             // boxRotation.position.z = 0.5;
 
-            boxRotation.position.z = -15.0 + Math.round(Math.random() * 30.0) + 0.5;
-            boxRotation.position.x = -15.0 + Math.round(Math.random() * 30.0);
+            // boxRotation.position.z = -24.0 + 8 * i + 0.5;
+            // boxRotation.position.z = -15.0 + 6 * Math.round(Math.random() * 5.0) + 0.5;
+
+            boxRotation.position.z = 15.0 - 6 * shufflePositions[shuffleIndex][1] + 0.5;
+            // boxRotation.position.x = -15.0 + 6 * Math.round(Math.random() * 5.0);
+            boxRotation.position.x = 15.0 - 6 * shufflePositions[shuffleIndex][0];
+
 
             animationSets.push(boxRotation);
-
         }
 
         return animationSets;
@@ -342,7 +365,7 @@ class DotsFloor {
         this.dotScene = new THREE.Scene();
         this.dotScene.background = new THREE.Color(0x252525);
 
-        this.camera = new THREE.OrthographicCamera(-0.68, 0.68, 1.0, -1.0, 0.1, 2000.0);
+        this.camera = new THREE.OrthographicCamera(-0.68, 0.68, 1.0, -1.0, 0.1, 100.0);
 
         if (size_x !== undefined) this.size_x = size_x;
         if (size_y !== undefined) this.size_y = size_y;
@@ -539,8 +562,10 @@ class DotsFloor {
         }
 
         // Add fountain
-        if (this.addTimer >= 3.0) {
-            this.addTimer = this.addTimer % 3.0;
+        const timeTrigger = 3.0;
+
+        if (this.addTimer >= timeTrigger) {
+            this.addTimer = this.addTimer % timeTrigger;
             // PredefinedDotAnimation.Footstep(this.addedCounter - 16).forEach(element => {
 
             // ##########   ROTATING ANIMATION   ##########
