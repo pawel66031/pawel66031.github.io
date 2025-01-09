@@ -138,7 +138,7 @@ class PredefinedDotAnimation {
     }
 
 
-    static RotatingCubes() {
+    static RotatingCubes(direction = 'X') {
         const rangeStart = 10;
         const rangeSize = 2;
 
@@ -165,7 +165,8 @@ class PredefinedDotAnimation {
             shufflePositions[shuffleIndex] = shufflePositions[randomIndex];
             shufflePositions[randomIndex] = temp;
 
-            var boxRotation = new BoxRotationDotsObject(2.0 + (i * 0.1), 1.0);
+            var boxRotation = new BoxRotationDotsObject(2.0 + (i * 0.1), 1.0, direction);
+            // var boxRotation = new BoxRotationDotsObject(2.0 + (i * 0.1), 1.0);
 
             const childObject = new THREE.Group();
 
@@ -175,8 +176,15 @@ class PredefinedDotAnimation {
             childObject.add(rotatingCubeMesh);
             childObject.add(predefinedBuffers.BoxPoints(3, 3, 3, 0.0, 0.0, 0.0));
 
-            childObject.position.z = 1.5;
-            childObject.position.y = 1.5;
+
+            if (direction == 'X') {
+                childObject.position.y = 1.5;
+                childObject.position.x = 1.5;
+            }
+            else if (direction == 'Z') {
+                childObject.position.z = 1.5;
+                childObject.position.y = 1.5;
+            }
 
             boxRotation.add(childObject);
             // boxRotation.position.z = 0.5;
@@ -184,9 +192,15 @@ class PredefinedDotAnimation {
             // boxRotation.position.z = -24.0 + 8 * i + 0.5;
             // boxRotation.position.z = -15.0 + 6 * Math.round(Math.random() * 5.0) + 0.5;
 
-            boxRotation.position.z = 15.0 - 6 * shufflePositions[shuffleIndex][1] + 0.5;
-            // boxRotation.position.x = -15.0 + 6 * Math.round(Math.random() * 5.0);
-            boxRotation.position.x = 15.0 - 6 * shufflePositions[shuffleIndex][0];
+            if (direction == 'X') {
+                boxRotation.position.z = 15.0 - 6 * shufflePositions[shuffleIndex][1];
+                boxRotation.position.x = 15.0 - 6 * shufflePositions[shuffleIndex][0] + 0.5;
+            }
+            else if (direction == 'Z') {
+                boxRotation.position.z = 15.0 - 6 * shufflePositions[shuffleIndex][1] + 0.5;
+                boxRotation.position.x = 15.0 - 6 * shufflePositions[shuffleIndex][0];
+                // boxRotation.position.x = -15.0 + 6 * Math.round(Math.random() * 5.0);
+            }
 
 
             animationSets.push(boxRotation);
@@ -194,6 +208,7 @@ class PredefinedDotAnimation {
 
         return animationSets;
     }
+
 }
 
 
@@ -247,11 +262,12 @@ class DotsAnimationObject extends THREE.Group {
 
 class FountainDotsObject extends DotsAnimationObject {
 
-    constructor(offset, duration) {
+    constructor(offset, duration, direction) {
 
         super(offset, duration);
 
         this.visible = false
+        this.direction = direction;
         // console.log(this.frameTime);
 
     }
@@ -278,11 +294,12 @@ class FountainDotsObject extends DotsAnimationObject {
 }
 
 class BoxRotationDotsObject extends DotsAnimationObject {
-    constructor(offset, duration) {
+    constructor(offset, duration, direction) {
 
         super(offset, duration);
 
         this.visible = false
+        this.direction = direction;
 
     }
 
@@ -300,7 +317,14 @@ class BoxRotationDotsObject extends DotsAnimationObject {
             // this.rotation.x = (this.frameTime / this.animationDuration) * (Math.PI * 12.0);
             // this.rotation.x = Math.sin((this.frameTime / this.animationDuration) * (Math.PI * 0.5)) * halfPI - halfPI;
             // this.rotation.x = -halfPI + (this.frameTime / this.animationDuration) * (Math.PI * 0.5);
-            this.rotation.x = -halfPI + this.BounceAnimation(this.frameTime / this.animationDuration) * (Math.PI * 0.5);
+            // this.rotation.x = -halfPI + this.BounceAnimation(this.frameTime / this.animationDuration) * (Math.PI * 0.5);
+            if (this.direction == 'X') {
+                this.rotation.z = halfPI - this.BounceAnimation(this.frameTime / this.animationDuration) * (Math.PI * 0.5);
+            } else if (this.direction == 'Z') {
+                this.rotation.x = -halfPI + this.BounceAnimation(this.frameTime / this.animationDuration) * (Math.PI * 0.5);
+                // this.rotation.x = -halfPI + (this.frameTime / this.animationDuration) * (Math.PI * 0.5);
+            }
+
             // this.scale.y = 1.0;
 
             // Always put super at the end in order to update frame time
@@ -570,7 +594,7 @@ class DotsFloor {
 
             // ##########   ROTATING ANIMATION   ##########
 
-            PredefinedDotAnimation.RotatingCubes().forEach(element => {
+            PredefinedDotAnimation.RotatingCubes(Math.random() > 0.5 ? 'X' : 'Z').forEach(element => {
                 this.AppendDotObject(element);
             })
 
