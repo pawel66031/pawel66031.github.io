@@ -57,10 +57,10 @@ class StandardMaterial {
 
 class PredefinedBuffers {
     constructor() {
-
+        this.boxPointsMedium = this.BoxPointsBuffer(3, 3, 3);
     }
 
-    BoxPoints(BoxSizeX = 1, BoxSizeY = 1, BoxSizeZ = 1, offsetX = 0.0, offsetY = 0.0, offsetZ = 0.0) {
+    BoxPointsBuffer(BoxSizeX = 1, BoxSizeY = 1, BoxSizeZ = 1, offsetX = 0.0, offsetY = 0.0, offsetZ = 0.0) {
         const BigBoxBuffer = new THREE.BufferGeometry();
 
         const boxGeometry = [];
@@ -85,7 +85,12 @@ class PredefinedBuffers {
 
         BigBoxBuffer.setAttribute('position', new THREE.Float32BufferAttribute(boxGeometry, 3));
 
-        return new THREE.Points(BigBoxBuffer, standardMaterials.PointMaterial());
+        // return new THREE.Points(BigBoxBuffer, standardMaterials.PointMaterial());
+        return BigBoxBuffer;
+    }
+
+    BoxPoints(BoxSizeX = 1, BoxSizeY = 1, BoxSizeZ = 1, offsetX = 0.0, offsetY = 0.0, offsetZ = 0.0) {
+        return new THREE.Points(this.BoxPointsBuffer(BoxSizeX, BoxSizeY, BoxSizeZ, offsetX, offsetY, offsetZ), standardMaterials.PointMaterial());
     }
 
     GetSmallBoxPoints() {
@@ -124,8 +129,15 @@ class PredefinedDotAnimation {
             const BigBoxMesh = new THREE.Mesh(BigBoxGeometry, BigBoxMeshMaterial);
 
             childObject.add(BigBoxMesh);
-            childObject.add(predefinedBuffers.BoxPoints(3, 3, 3, 0.0, 0.0, 0.0));
+            // childObject.add(predefinedBuffers.BoxPoints(3, 3, 3, 0.0, 0.0, 0.0));
+            // childObject.add(predefinedBuffers.GetMediumBoxPointsBoxPoints());
 
+            const points = new THREE.Points(predefinedBuffers.GetMediumBoxPoints(), standardMaterials.PointMaterial());
+
+
+            childObject.add(points);
+
+            points.frustumCulled = false;
 
             childObject.position.y = 1.5;
 
@@ -178,13 +190,12 @@ class PredefinedDotAnimation {
 
 
             if (direction == 'X') {
-                childObject.position.y = 1.5;
                 childObject.position.x = 1.5;
             }
             else if (direction == 'Z') {
                 childObject.position.z = 1.5;
-                childObject.position.y = 1.5;
             }
+            childObject.position.y = 1.5;
 
             boxRotation.add(childObject);
             // boxRotation.position.z = 0.5;
