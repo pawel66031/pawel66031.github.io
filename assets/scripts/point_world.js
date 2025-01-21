@@ -38,7 +38,7 @@ class StandardMaterial {
         this.materialPoint = new THREE.PointsMaterial({
             depthTest: false,
             // size: 2.5,
-            size: 4.0,
+            size: 3.5,
             color: 0xFFFFFF
         });
 
@@ -709,8 +709,13 @@ class RenderScene {
         const frustumSize = 20;
 
 
-        this.bgWidth = this.bgElement.offsetWidth;
+        // this.bgWidth = this.bgElement.offsetWidth;
+        this.bgWidth = window.innerWidth;
         this.bgHeight = window.innerHeight;
+
+        // Material settings
+        standardMaterials.PointMaterial().size = Math.min(this.bgWidth, this.bgHeight) * 0.005;
+        // standardMaterials.PointMaterial().uniforms.size.value = Math.min(this.bgWidth, this.bgHeight) * 0.075;
 
         this.camera.aspect = this.bgWidth / this.bgHeight;
         const aspect = this.bgWidth / this.bgHeight;
@@ -720,11 +725,16 @@ class RenderScene {
 
         this.sceneOffset = Math.max(20, vmin(4)) + 12;
 
-        this.camera.left = -0.5 * frustumSize * aspect;
-        this.camera.right = 0.5 * frustumSize * aspect;
-        this.camera.top = frustumSize / 2;
-        this.camera.bottom = -frustumSize / 2;
+        // this.camera.left = -0.5 * frustumSize * aspect;
+        this.camera.left = -0.5 * frustumSize * Math.min(7.0, aspect);
+        // this.camera.right = 0.5 * frustumSize * aspect;
+        this.camera.right = 0.5 * frustumSize * Math.min(7.0, aspect);
+        // this.camera.top = (frustumSize / 2) - (aspect - Math.min(7.0, aspect));
+        this.camera.top = (frustumSize / 2);
+        this.camera.bottom = -(frustumSize / 2);
         this.camera.updateProjectionMatrix();
+
+        console.log("Left: " + this.camera.left + ";Right: " + this.camera.right + ";Top: " + this.camera.top + ";Bottom: " + this.camera.bottom);
 
     }
 

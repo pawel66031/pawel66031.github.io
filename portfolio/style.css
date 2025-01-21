@@ -18,6 +18,11 @@
     src: url("/assets/fonts/DeepMindSerif_v5.003/DeepMindSerifText-Regular.ttf");
 }
 
+@font-face {
+    font-family: "Open Sans";
+    src: url("/assets/fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf");
+}
+
 body {
     margin: 0px;
     background-color: #100F0F;
@@ -191,6 +196,10 @@ a:active {
     border-color: #E2DCC8;
     border-style: solid;
     border-radius: var(--hero-border-radius);
+}
+
+.section-description {
+    font-family: "Open Sans";
 }
 
 /*********************/
@@ -704,6 +713,8 @@ a:active {
 }
 
 .portfolio-technology-table-softwares {
+    border-radius: 16px;
+    margin: 8px;
     padding: 8px;
     display: flex;
     flex-direction: column;
