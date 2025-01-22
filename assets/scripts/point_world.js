@@ -647,7 +647,9 @@ class RenderScene {
             this.bgElement.innerHTML = "";
 
             this.bgWidth = this.bgElement.offsetWidth;
-            this.bgWidth = this.bgElement.offsetHeight;
+            console.log(this.bgWidth);
+            // this.bgWidth = this.bgElement.offsetHeight;
+            this.bgHeight = this.bgElement.offsetHeight;
 
 
             this.viewSuspended = false;
@@ -682,7 +684,6 @@ class RenderScene {
 
 
         const dotsFloor = new DotsFloor();
-        // this.contour = contour;
 
         dotsFloor.InitScene();
         this.scene = dotsFloor.GetDotScene();
@@ -708,17 +709,20 @@ class RenderScene {
     _OnWindowResize() {
         const frustumSize = 20;
 
+        this.bgWidth = this.bgElement.offsetWidth;
+        this.bgHeight = this.bgElement.offsetHeight;
 
-        // this.bgWidth = this.bgElement.offsetWidth;
-        this.bgWidth = window.innerWidth;
-        this.bgHeight = window.innerHeight;
+        //   Material settings
 
-        // Material settings
         standardMaterials.PointMaterial().size = Math.min(this.bgWidth, this.bgHeight) * 0.005;
         // standardMaterials.PointMaterial().uniforms.size.value = Math.min(this.bgWidth, this.bgHeight) * 0.075;
 
+
         this.camera.aspect = this.bgWidth / this.bgHeight;
+
         const aspect = this.bgWidth / this.bgHeight;
+        const aspectLimit = 7.0;
+
         this.camera.updateProjectionMatrix();
 
         this.render.setSize(this.bgWidth, this.bgHeight);
@@ -726,12 +730,17 @@ class RenderScene {
         this.sceneOffset = Math.max(20, vmin(4)) + 12;
 
         // this.camera.left = -0.5 * frustumSize * aspect;
-        this.camera.left = -0.5 * frustumSize * Math.min(7.0, aspect);
+        this.camera.left = -0.5 * frustumSize * Math.min(aspectLimit, aspect);
         // this.camera.right = 0.5 * frustumSize * aspect;
-        this.camera.right = 0.5 * frustumSize * Math.min(7.0, aspect);
+        this.camera.right = 0.5 * frustumSize * Math.min(aspectLimit, aspect);
         // this.camera.top = (frustumSize / 2) - (aspect - Math.min(7.0, aspect));
-        this.camera.top = (frustumSize / 2);
-        this.camera.bottom = -(frustumSize / 2);
+        if (aspect > aspectLimit) {
+            this.camera.top = (frustumSize / 2) * (aspectLimit / aspect);
+            this.camera.bottom = -(frustumSize / 2) * (aspectLimit / aspect);
+        } else {
+            this.camera.top = (frustumSize / 2);
+            this.camera.bottom = -(frustumSize / 2);
+        }
         this.camera.updateProjectionMatrix();
 
         console.log("Left: " + this.camera.left + ";Right: " + this.camera.right + ";Top: " + this.camera.top + ";Bottom: " + this.camera.bottom);
