@@ -230,7 +230,7 @@ a:active {
 
 .color-3 {
     /* background-color: #E2DCC8; */
-    background-color: #110F09;
+    background-color: #110f09;
     color: #E2DCC8;
 }
 
@@ -321,6 +321,12 @@ a:active {
 }
 
 .portfolio-about-me-section {
+    /* background-image: url("/assets/images/about-me-bg.png"); */
+    background: linear-gradient(rgba(17, 15, 9, 0.5),
+            rgba(17, 15, 9, 0.5)), url("/assets/images/about-me-bg.png");
+    background-position: center;
+    backdrop-filter: contrast(20%);
+
     padding-top: 90px;
     padding-bottom: 40px;
 }
@@ -476,16 +482,25 @@ a:active {
 }
 
 .skills-content-logo-background {
-    margin: 4px;
-    background-color: rgba(5, 5, 5, 0.1);
     border-radius: 16px;
     display: inherit;
+    width: 14.285%;
 }
 
 .skills-content-logo {
-    padding: 8px;
+    padding: 16px;
     margin: auto 0;
     height: 64px;
+
+    border-radius: 100%;
+    border-color: white;
+    border-style: solid;
+
+    position: absolute;
+}
+
+.skills-content-logo-background:hover {
+    z-index: 99;
 }
 
 .skills-content-logo>img {
@@ -727,6 +742,8 @@ a:active {
 .portfolio-technology-table {
     padding: 8px;
     margin: 8px;
+
+    position: relative;
 
     display: flex;
     flex-wrap: wrap;

@@ -693,9 +693,6 @@ class RenderScene {
 
         this.dotsUpdater = dotsFloor;
 
-
-        // this.camera.far = 32.0;
-
         this._OnWindowResize();
 
         // Add event listener
@@ -742,9 +739,6 @@ class RenderScene {
             this.camera.bottom = -(frustumSize / 2);
         }
         this.camera.updateProjectionMatrix();
-
-        console.log("Left: " + this.camera.left + ";Right: " + this.camera.right + ";Top: " + this.camera.top + ";Bottom: " + this.camera.bottom);
-
     }
 
     _Render() {
@@ -792,4 +786,5 @@ const predefinedBuffers = new PredefinedBuffers();
 const BG_Hero_Scene = new RenderScene(
     document.getElementsByClassName("portfolio-hero-section")[0]
 );
+
 BG_Hero_Scene._Initialize();

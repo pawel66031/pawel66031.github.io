@@ -1,0 +1,46 @@
+{
+    "languages": [
+        {
+            "name": "C#",
+            "alt": "C# Language",
+            "icon_url": "/assets/icons/c-sharp-logo.png",
+            "bg_color": "#3a0348"
+        },
+        {
+            "name": "C++",
+            "alt": "C++ Language",
+            "icon_url": "/assets/icons/Cpp_Logo.png",
+            "bg_color": "#1b4b86"
+        },
+        {
+            "name": "Python",
+            "alt": "Python Language",
+            "icon_url": "/assets/icons/python-logo-only.png",
+            "bg_color": "#1c3e5a"
+        },
+        {
+            "name": "HTML5",
+            "alt": "HTML5 Logo",
+            "icon_url": "/assets/icons/HTML5_Logo_256.png",
+            "bg_color": "#f2f2f2"
+        },
+        {
+            "name": "CSS3",
+            "alt": "CSS3 Logo",
+            "icon_url": "/assets/icons/CSS3_logo.png",
+            "bg_color": "#f2f2f2"
+        },
+        {
+            "name": "JavaScript",
+            "alt": "JavaScript Language",
+            "icon_url": "/assets/icons/JavaScript-logo.png",
+            "bg_color": "#eae05a"
+        },
+        {
+            "name": "PHP",
+            "alt": "PHP Language",
+            "icon_url": "/assets/icons/new-php-logo.png",
+            "bg_color": "#4f5b93"
+        }
+    ]
+}
