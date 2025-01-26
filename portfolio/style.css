@@ -83,6 +83,48 @@ a:active {
     position: relative;
 }
 
+/* Portfolio - Hamburger Menu */
+nav {
+    padding: 1.5rem 2 rem;
+    background-color: #22283100;
+
+    z-index: 99;
+    position: absolute;
+    width: 100%;
+}
+
+.portfolio-checkbtn {
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    background-color: red;
+    display: block;
+
+    width: 64px;
+    height: 64px;
+}
+
+.portfolio-nav-mobile {
+    display: none;
+
+    position: absolute;
+    top: 4.5rem;
+    left: 0;
+    background: #222831;
+    z-index: 1;
+    width: 200px;
+}
+
+.portfolio-nav-mobile a {
+    color: #fff;
+    padding: 1rem 1.5rem;
+    display: block;
+}
+
+#portfolio-check:checked~.portfolio-nav-mobile {
+    display: block;
+}
+
 /* Main menu - threejs background */
 .portfolio-title {
     height: calc(100vh - 48px);
@@ -103,6 +145,16 @@ a:active {
 }
 
 /* Portfolio - Hero Section - Border Blur*/
+
+.portfolio-dots-scene {
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    position: absolute;
+    z-index: -99;
+}
 
 .portfolio-test-hero-section::after {
     --negative-border-width: 1.5em;
@@ -140,7 +192,7 @@ a:active {
     height: 100vh;
     /* background: url("assets/images/1.png") ; */
     /* 50%/ cover border-box padding-box; */
-    font-size: 2em;
+    /* font-size: 2em; */
 
     /* backdrop-filter: blur(4px); */
 }
@@ -164,7 +216,7 @@ a:active {
     height: 100vh;
     color: #FBF6E9;
     font-family: "RobotoRegular";
-    font-size: 54px;
+    /* font-size: 54px; */
 }
 
 .portfolio-hero-left-section {
@@ -329,6 +381,14 @@ a:active {
 
     padding-top: 90px;
     padding-bottom: 40px;
+}
+
+.portfolio-main-about-me-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
 }
 
 .portfolio-main-about-me-flex {
@@ -972,6 +1032,23 @@ a:active {
     .tools-icon {
         flex: 50%;
         width: 100%;
+    }
+
+    .portfolio-technology-computer-skills {
+        flex-wrap: wrap;
+    }
+
+    .portfolio-technology-half-section {
+        flex: 100%;
+    }
+
+    .portfolio-tools-row {
+        flex: 100%;
+        flex-wrap: wrap;
+    }
+
+    .portfolio-technology-table-softwares {
+        flex-wrap: wrap;
     }
 }
 

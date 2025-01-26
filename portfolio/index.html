@@ -22,11 +22,41 @@
 </head>
 
 <body>
-    <div class="portfolio-hero-section">
+    <div class="portfolio-hero-section" id="main-page">
+        <nav>
+            <input type="checkbox" id="portfolio-check" style="display: none;">
+            <label for="portfolio-check" class="portfolio-checkbtn">
+                <i class="fas fa-bars"></i>
+            </label>
+            <div class="portfolio-nav-mobile">
+                <a href="#main-page">Main Page</a>
+                <a href="#about-me">About Me</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+        <div class="portfolio-dots-scene">
 
+        </div>
+
+        <div class="portfolio-container" style="height: 100%;">
+            <div class="portfolio-main-about-me-hero">
+
+                <div class="portfolio-about-me-left-section">
+                    <div class="portfolio-main-about-me-title">
+                        Hello.<br>My name is Paweł
+                    </div>
+                    <div class="portfolio-main-about-me-description color-1-description">
+                        I believe that combining creativity with programming can significantly enhance workflow across
+                        various projects.
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="portfolio-main-about-me dynamic-width color-2">
+    <div class="portfolio-main-about-me dynamic-width color-2" style="display:none">
         <div class="portfolio-container">
             <div class="portfolio-main-about-me-flex">
 
@@ -43,7 +73,7 @@
         </div>
     </div>
 
-    <div class="portfolio-about-me-section dynamic-width color-3">
+    <div class="portfolio-about-me-section dynamic-width color-3" id="about-me">
         <div class="portfolio-container">
             <div class="portfolio-about-me-title title-section">
                 About Me
@@ -69,7 +99,7 @@
     </div>
 
 
-    <div class="portfolio-technology-skills dynamic-width color-4">
+    <div class="portfolio-technology-skills dynamic-width color-4" id="skills">
         <div class="portfolio-container">
             <div class="portfolio-technology-skills-title title-section">
                 Technology Skills
@@ -280,7 +310,7 @@
 
 
 
-    <div class="portfolio-projects color-green">
+    <div class="portfolio-projects color-green" id="projects">
         <div class="portfolio-container">
             <div class="portfolio-projects-title title-portfolio-section title-section">
                 Projects and Experiences
@@ -379,7 +409,7 @@
 
 
     <!-- Contact -->
-    <div class="portfolio-contact">
+    <div class="portfolio-contact" id="contact">
         <div class="portfolio-contact-title">Contact</div>
         <div class="portfolio-contact-description">
             <span>If you wish to contact me, you can do that via e-mail: <a
@@ -467,7 +497,7 @@
         </div>
 
         <div class="copyright-section">
-            Copyright © 2024 Paweł Ruszkiewicz. All rights reserved.
+            Copyright © 2024-2025 Paweł Ruszkiewicz. All rights reserved.
         </div>
     </div>
     <!-- <script type="module" src="/assets/scripts/portfolio.js"></script> -->

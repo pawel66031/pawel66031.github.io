@@ -643,8 +643,8 @@ class RenderScene {
         if (divElement !== undefined) {
             this.bgElement = divElement;
 
-            // Delete img as a placeholder for 3D view
-            this.bgElement.innerHTML = "";
+            // // Delete img as a placeholder for 3D view
+            // this.bgElement.innerHTML = "";
 
             this.bgWidth = this.bgElement.offsetWidth;
             console.log(this.bgWidth);
@@ -784,7 +784,7 @@ const standardMaterials = new StandardMaterial();
 const predefinedBuffers = new PredefinedBuffers();
 
 const BG_Hero_Scene = new RenderScene(
-    document.getElementsByClassName("portfolio-hero-section")[0]
+    document.getElementsByClassName("portfolio-dots-scene")[0]
 );
 
 BG_Hero_Scene._Initialize();
