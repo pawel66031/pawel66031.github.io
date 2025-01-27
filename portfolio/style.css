@@ -32,6 +32,11 @@ body {
     /* overflow: hidden; */
 }
 
+.portfolio-nav-mobile:focus {
+    overflow: hidden;
+    display: none
+}
+
 a,
 a:hover,
 a:focus,
@@ -94,14 +99,17 @@ nav {
 }
 
 .portfolio-checkbtn {
-    font-size: 1.5rem;
     color: white;
     cursor: pointer;
-    background-color: red;
+
     display: block;
 
     width: 64px;
-    height: 64px;
+
+    text-align: center;
+    padding: 16px 0;
+    font-size: 2rem;
+
 }
 
 .portfolio-nav-mobile {
@@ -142,6 +150,18 @@ nav {
     transform: translate(-50%, -50%);
     font-family: Arial, Helvetica, sans-serif;
     color: #FBF6E9;
+}
+
+.portfolio-hero-bg-button {
+    background-color: green;
+    cursor: pointer;
+
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 48px;
+    height: 48px;
+    margin: 12px;
 }
 
 /* Portfolio - Hero Section - Border Blur*/

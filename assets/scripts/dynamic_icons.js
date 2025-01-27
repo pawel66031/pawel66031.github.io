@@ -27,8 +27,6 @@ function parseJsonProject(json) {
         // text += "left: calc(" + (oneElementPercent * i) + "% - " + (((i / (jsonSize - 1)) * (102)) + 8) + "px);"
         text += "left: calc(" + (oneElementPercent * i) + "% - " + (((i / (jsonSize - 1)) * (102 + 16)) - 8) + "px);"
 
-        console.log(text)
-
         logoDiv.style = text
 
         // 102px + 8px

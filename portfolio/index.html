@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+
     <title>Portfolio</title>
     <script type="importmap">
         {
@@ -26,14 +29,15 @@
         <nav>
             <input type="checkbox" id="portfolio-check" style="display: none;">
             <label for="portfolio-check" class="portfolio-checkbtn">
-                <i class="fas fa-bars"></i>
+                <i class="fa fa-bars"></i>
             </label>
+            <script src="/assets/scripts/menu_item.js"></script>
             <div class="portfolio-nav-mobile">
-                <a href="#main-page">Main Page</a>
-                <a href="#about-me">About Me</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
+                <a onclick="menuTrigger()" href="#main-page">Main Page</a>
+                <a onclick="menuTrigger()" href="#about-me">About Me</a>
+                <a onclick="menuTrigger()" href="#skills">Skills</a>
+                <a onclick="menuTrigger()" href="#projects">Projects</a>
+                <a onclick="menuTrigger()" href="#contact">Contact</a>
             </div>
         </nav>
         <div class="portfolio-dots-scene">
@@ -54,6 +58,11 @@
                 </div>
             </div>
         </div>
+
+        <!-- Button to hide text
+        <div title="Wallpaper Mode" class="portfolio-hero-bg-button">
+
+        </div> -->
     </div>
 
     <div class="portfolio-main-about-me dynamic-width color-2" style="display:none">
