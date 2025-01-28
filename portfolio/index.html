@@ -319,7 +319,7 @@
 
 
 
-    <div class="portfolio-projects color-green" id="projects">
+    <div class="portfolio-projects color-2" id="projects">
         <div class="portfolio-container">
             <div class="portfolio-projects-title title-portfolio-section title-section">
                 Projects and Experiences
@@ -418,55 +418,12 @@
 
 
     <!-- Contact -->
-    <div class="portfolio-contact" id="contact">
+    <div class="portfolio-contact color-3" id="contact">
         <div class="portfolio-contact-title">Contact</div>
         <div class="portfolio-contact-description">
             <span>If you wish to contact me, you can do that via e-mail: <a
                     href="mailto:pawel66031@protonmail.com">pawel66031@protonmail.com</a></span><br>
             <span>Scan QR below in order to contact me</span>
-            <div class="portfolio-contact-qr-section">
-                <script>
-                    const ContactElement = document.getElementsByClassName("portfolio-contact-qr-section")[0];
-                    const ContactCount = ContactElement.childElementCount;
-
-                    const XCoordDiv = ContactElement.appendChild(document.createElement("div"));
-                    const YCoordDiv = ContactElement.appendChild(document.createElement("div"));
-                    const ZCoordDiv = ContactElement.appendChild(document.createElement("div"));
-                    const SummaryDiv = ContactElement.appendChild(document.createElement("div"));
-                    const SummaryAcc = ContactElement.appendChild(document.createElement("div"));
-
-
-                    function handleMotionEvent(event) {
-                        // const x = event.accelerationIncludingGravity.x;
-                        // const y = event.accelerationIncludingGravity.y;
-                        // const z = event.accelerationIncludingGravity.z;
-
-
-                        const x = event.acceleration.x;
-                        const y = event.acceleration.y;
-                        const z = event.acceleration.z;
-
-                        XCoordDiv.textContent = x;
-                        YCoordDiv.textContent = y;
-                        ZCoordDiv.textContent = z;
-
-                        // SummaryDiv.textContent = Math.sqrt(x*x+y*y+z*z);
-                        SummaryAcc.textContent = event.acceleration.x;
-                        SummaryDiv.textContent = event.interval;
-                    }
-
-                    window.addEventListener("devicemotion", handleMotionEvent, true);
-                </script>
-
-                <img src="/assets/images/qr-code.png" width="400" />
-
-                <noscript>
-                    <img src="/assets/images/qr-code.png" />
-                </noscript>
-            </div>
-            <div class="portfolio-contact-qr-hint">
-                Shake or click/tap rapidly to reveal QR code
-            </div>
         </div>
     </div>
     </div>

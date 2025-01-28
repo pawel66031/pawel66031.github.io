@@ -28,8 +28,6 @@ body {
     background-color: #100F0F;
     color: #3d3d3d;
     font-family: "DM Serif Text";
-    /* background: linear-gradient(180deg, rgba(0, 19, 5, 1) calc(100% - 192px), rgba(0, 0, 0, 1) 100%); */
-    /* overflow: hidden; */
 }
 
 .portfolio-nav-mobile:focus {
@@ -283,12 +281,12 @@ nav {
 
 .color-1 {
     background-color: #100F0F;
-    /* color: #F3F2F2; */
     color: #C1EFF0;
 }
 
 .color-1-description {
     color: #d6f5f5;
+    font-family: "Open Sans";
 }
 
 .color-2 {
@@ -395,10 +393,11 @@ nav {
 .portfolio-about-me-section {
     /* background-image: url("/assets/images/about-me-bg.png"); */
     background: linear-gradient(rgba(17, 15, 9, 0.5),
-            rgba(17, 15, 9, 0.5)), url("/assets/images/about-me-bg.png");
+            rgba(17, 15, 9, 0.5)), url("/assets/images/about-me-bg.jpg");
     background-position: center;
     backdrop-filter: contrast(20%);
 
+    background-size: cover;
     padding-top: 90px;
     padding-bottom: 40px;
 }
