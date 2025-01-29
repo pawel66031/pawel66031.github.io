@@ -392,8 +392,9 @@ nav {
 
 .portfolio-about-me-section {
     /* background-image: url("/assets/images/about-me-bg.png"); */
-    background: linear-gradient(rgba(17, 15, 9, 0.5),
-            rgba(17, 15, 9, 0.5)), url("/assets/images/about-me-bg.jpg");
+    background: linear-gradient(rgba(17, 15, 9, 0.85), rgba(17, 15, 9, 0.95)),
+        url("/assets/images/about-me-bg.jpg");
+
     background-position: center;
     backdrop-filter: contrast(20%);
 
@@ -555,6 +556,44 @@ nav {
 
 /* Tools */
 
+.tool-item {
+    width: 25%;
+}
+
+.tool-content {
+    margin: 8px;
+    background-color: #eafafac0;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.tool-content:hover {
+    background-color: #eafafa;
+}
+
+.tool-icon {
+    text-align: center;
+}
+
+.tool-icon>img {
+    width: 96px;
+}
+
+.tool-title {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.tool-description {
+    padding: 12px;
+    text-align: justify;
+    font-size: 0.9rem;
+    font-family: "Open Sans";
+    align-content: center;
+
+    height: 1.5rem;
+    padding-top: 4px;
+}
 
 .portfolio-skills-description {
     padding: 10px 16px;
@@ -623,6 +662,7 @@ nav {
 .portfolio-tools-row {
     display: flex;
     color: black;
+    flex-wrap: wrap;
 }
 
 .portfolio-projects {
@@ -1070,6 +1110,19 @@ nav {
         flex-wrap: wrap;
     }
 }
+
+@media only screen and (max-width: 1120px) {
+    .tool-item {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .tool-item {
+        width: 100%;
+    }
+}
+
 
 @media (min-width: 1280px) {
     .portfolio-hero-name {
