@@ -669,9 +669,15 @@ nav {
     padding: 24px 0;
 }
 
+.portfolio-projects-group-name {
+    padding: 16px;
+    font-size: 1.75rem;
+    padding-left: 32px;
+}
+
 .project-item {
     /* height: 250px; */
-    height: 13vw;
+    height: 17vw;
     margin: 0;
     align-items: center;
     /* padding: 12px 0; */
@@ -1070,9 +1076,9 @@ nav {
         align-items: center;
     }
 
-    .portfolio-main-about-me-description {
+    /* .portfolio-main-about-me-description {
         padding: 32px;
-    }
+    } */
 
     .portfolio-skills {
         margin: 32px, 16px;
@@ -1109,6 +1115,15 @@ nav {
     .portfolio-technology-table-softwares {
         flex-wrap: wrap;
     }
+
+    .project-item {
+        height: 20vh;
+    }
+
+    .portfolio-projects-group-name {
+        text-align: center;
+        padding: 32px 0;
+    }
 }
 
 @media only screen and (max-width: 1120px) {
@@ -1119,6 +1134,10 @@ nav {
 
 @media only screen and (max-width: 600px) {
     .tool-item {
+        width: 100%;
+    }
+
+    .framework-section {
         width: 100%;
     }
 }
