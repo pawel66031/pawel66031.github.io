@@ -549,6 +549,12 @@ nav {
     font-size: x-large;
 }
 
+.portfolio-contact-container {
+    width: 50%;
+    margin: auto;
+    margin-bottom: 48px;
+}
+
 .portfolio-contact-qr-section {
     padding: 128px 32px;
     color: white;
