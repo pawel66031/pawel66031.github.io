@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/portfolio/style.css" />
+    <link rel="stylesheet" href="/portfolio/projects/style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+
+    <title>Building Generator - Portfolio</title>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.167.1/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.167.1/examples/jsm/"
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="project-top-bar">
+        <div class="top-bar-container" style="display: flex;">
+            <a href="/portfolio/">
+                <div class="website-portfolio-logo">
+                    <div class="website-logo">
+                        Paweł Ruszkiewicz
+                    </div>
+                </div>
+            </a>
+
+            <div class="top-bar-separate">|</div>
+
+            <a href="/portfolio/projects">
+                <div class="website-menus">
+                    Projects
+                </div>
+            </a>
+
+            <div class="top-bar-separate">|</div>
+
+            <a href="/portfolio/projects">
+                <div class="website-menus">
+                    Building Generator
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="project-section" style="background-image: url(/assets/images/procedural_house.jpg);
+  background-size: cover;
+  background-position-y: 60%;">
+    </div>
+    <div class="project-title color-2">
+        <div class="top-bar-container">
+            <h1>Building Generator</h1>
+        </div>
+    </div>
+    <div class="top-bar-container color-4">
+        <div class="project-description secondary-font">
+            <p>There was an opinion about a new feature in Blender called Geometry Nodes. Most graphic designers had the
+                opinion that
+                the new tool is pointless and can't do something decent. Since I have knowledge of creating tools from
+                scratch and
+                experience with a program for creating procedural objects, namely Houdini, I decided to prove to people
+                that Geometry
+                Nodes has great possibilities and can save a lot of time on modeling.</p>
+
+            <p>When Blender introduced Geometry Nodes, many graphic designers initially dismissed the feature as
+                pointless, believing
+                it couldn't produce high-quality results. Having experience in tool development and procedural modelling
+                (particularly
+                with Houdini) I saw an opportunity to challenge this perception. My goal was to demonstrate that
+                Geometry Nodes offer
+                powerful capabilities and can significantly speed up the modelling process.</p>
+
+            <p>This project revolves around a procedural building generator that utilizes drawn lines and a flat mesh
+                (plane) as input.
+                Due to Blender's current limitations in the Modifiers section - such as the inability to directly use
+                Empty objects or
+                list with multiple objects. I had to find an alternative way to define openings in walls. The only
+                viable solution in
+                Blender 4.3 was to use an additional Geometry Nodes modifier to specify the position and size of these
+                openings.</p>
+
+            <p>The result is an efficient tool that generates buildings instantly when applied to a flat curve or plane.
+            </p>
+            <h2>Results</h2>
+            <li>Adjustable wall thickness</li>
+            <li>Procedural window and door placement using a separate Geometry Nodes modifier</li>
+            <li>Customizable roof properties, including rotation, position and height</li>
+
+            <hr>
+            <h2>Videos</h2>
+
+            <div>
+                <div style="width: 50%;margin: 8px;">
+                    <video width="100%" autoplay muted controls>
+                        <source src="/assets/projects/images/building-generator-roof.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div style="width: 66.6%;margin: 8px;">
+                    <video width="100%" autoplay muted controls>
+                        <source src="/assets/projects/images/building-generator-showcase.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <hr>
+
+            <div>Tools used: Blender
+            </div>
+        </div>
+    </div>
+
+    <div class="portfolio-bottom-site dynamic-width">
+        <div class="footer-contact color-3">
+            <div class="footer-contact-item">
+                <div class="footer-item">
+                    <a href="https://github.com/pawel66031">
+                        <div style="width: 100%; height: 100%;">
+                            Github
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-contact-item">
+                <div class="footer-item">
+                    <a href="mailto:pawel66031@protonmail.com">
+                        <div style="width: 100%; height: 100%;">
+                            E-mail
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright-section color-3">
+            Copyright © 2024-2025 Paweł Ruszkiewicz. All rights reserved.
+        </div>
+    </div>
+
+
+</body>
+
+</html>
