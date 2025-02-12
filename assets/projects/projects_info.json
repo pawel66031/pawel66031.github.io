@@ -4,33 +4,38 @@
             "name": "Dragon Sculpt",
             "type": 0,
             "date": "2023",
-            "description": "Based on game",
+            "description": "Sculpture based on game; reference used from author's ArtStation page",
+            "url_code": "projects/dragon-sculpt",
             "project_background": {
-                "url": "/assets/images/dragon-sculpture.jpg",
+                "url": "/assets/images/dragon-render.jpg",
                 "size": "80%",
                 "position_x": "150%",
                 "position_y": "16%",
                 "repeat": "no-repeat",
                 "bgColor": "#232d2f"
-            }
+            },
+            "tags": "Blender"
         },
         {
             "name": "Building Generator",
             "type": 2,
             "date": "2024",
-            "description": "Lorem Ipsum",
+            "description": "Simple and fast building generator from flat plane or 2D curve. Work in Progress...",
+            "url_code": "projects/building-generator",
             "project_background": {
                 "url": "/assets/images/procedural_house.jpg",
                 "size": "cover",
                 "position_x": "",
                 "position_y": "60%"
-            }
+            },
+            "tags": "Blender"
         },
         {
             "name": "Lamp Generator",
             "type": 2,
             "date": "2024",
-            "description": "Based on game",
+            "description": "Procedural lamp generator",
+            "url_code": "projects/lamp-generator",
             "project_background": {
                 "url": "/assets/images/lampa-background.jpg",
                 "position_x": "center",
@@ -38,45 +43,52 @@
                 "repeat": "no-repeat",
                 "size": "cover",
                 "bgColor": "#12395f"
-            }
+            },
+            "tags": "Blender"
         },
         {
             "name": "Procedural fence - Houdini",
             "type": 2,
-            "date": "2024",
-            "description": "Based on game",
+            "date": "2023",
+            "description": "First attempt to create a procedural tool using Houdini",
+            "url_code": "projects/procedural-fence-houdini",
             "project_background": {
-                "url": "/assets/images/houdini-fence.png",
+                "url": "/assets/images/houdini-thumbnail.jpg",
                 "position_x": "center",
                 "position_y": "55%",
                 "repeat": "no-repeat",
                 "size": "cover",
                 "bgColor": "#12395f"
-            }
+            },
+            "tags": "Houdini"
         },
         {
             "name": "BuildingViewer",
             "type": 1,
             "date": "2022",
-            "description": "Based on game",
+            "description": "Personal project. The main purpose of this program is to convert map data to 3D environment",
+            "url_code": "projects/building-viewer",
             "project_background": {
                 "url": "/assets/images/building-viewer1.png",
                 "size": "cover",
                 "position_x": "",
                 "position_y": "30%"
-            }
+            },
+            "tags": "C++;Programming;3D"
         },
         {
             "name": "Hexa Mirror",
             "type": 1,
             "date": "2023",
-            "description": "Based on game",
+            "description": "Game made during GameJam event called Hello GameJam 2023 event. I was responsible for programming game mechanics and tools for graphic designers",
+            "url_code": "projects/hexa-mirror",
             "project_background": {
                 "url": "/assets/images/hexa-mirror-screenshot.jpg",
                 "size": "cover",
                 "position_x": "",
                 "position_y": "30%"
-            }
+            },
+            "tags": "C#;Programming;Unity"
         }
     ]
 }

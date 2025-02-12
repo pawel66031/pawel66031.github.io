@@ -2,6 +2,7 @@
 .project-top-bar {
     height: 70px;
     color: white;
+    background-color: #252525;
 }
 
 .top-bar-container {
@@ -23,6 +24,10 @@
     align-content: center;
 }
 
+.top-bar-container>a:hover {
+    text-decoration: underline;
+}
+
 .website-portfolio-logo {
     width: 200px;
     height: 100%;
@@ -33,7 +38,7 @@
 .website-menus {
     margin: 8px;
 
-    align-items: center;
+    align-content: center;
 }
 
 /* Project blog section */
@@ -65,6 +70,15 @@ h1 {
 .project-description {
     padding: 48px;
     font-size: 1rem;
+}
+
+.project-description>p>a:hover {
+    color: green;
+    text-decoration: underline;
+}
+
+.project-description>p>a {
+    font-weight: 600;
 }
 
 .project-hyperlink {
