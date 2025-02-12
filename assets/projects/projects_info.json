@@ -47,22 +47,6 @@
             "tags": "Blender"
         },
         {
-            "name": "Procedural fence - Houdini",
-            "type": 2,
-            "date": "2023",
-            "description": "First attempt to create a procedural tool using Houdini",
-            "url_code": "projects/procedural-fence-houdini",
-            "project_background": {
-                "url": "/assets/images/houdini-thumbnail.jpg",
-                "position_x": "center",
-                "position_y": "55%",
-                "repeat": "no-repeat",
-                "size": "cover",
-                "bgColor": "#12395f"
-            },
-            "tags": "Houdini"
-        },
-        {
             "name": "BuildingViewer",
             "type": 1,
             "date": "2022",
@@ -83,7 +67,7 @@
             "description": "Game made during GameJam event called Hello GameJam 2023 event. I was responsible for programming game mechanics and tools for graphic designers",
             "url_code": "projects/hexa-mirror",
             "project_background": {
-                "url": "/assets/images/hexa-mirror-screenshot.jpg",
+                "url": "/assets/projects/images/hexa-mirror-screenshot.jpg",
                 "size": "cover",
                 "position_x": "",
                 "position_y": "30%"
