@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/portfolio/style.css" />
+    <link rel="stylesheet" href="/portfolio/projects/style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+
+    <title>Multiple blend files exporter- Portfolio</title>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.167.1/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.167.1/examples/jsm/"
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="project-top-bar">
+        <div class="top-bar-container" style="display: flex;">
+            <a href="/portfolio/">
+                <div class="website-portfolio-logo">
+                    <div class="website-logo">
+                        Paweł Ruszkiewicz
+                    </div>
+                </div>
+            </a>
+
+            <div class="top-bar-separate">|</div>
+
+            <a href="/portfolio/projects">
+                <div class="website-menus">
+                    Projects
+                </div>
+            </a>
+
+            <div class="top-bar-separate">|</div>
+            <div class="website-menus" style="color: #ccc;">
+                Multiple blend files exporter
+            </div>
+        </div>
+    </div>
+    <div class="project-section" style="background-image: url(/assets/images/blend_to_gltf.png);
+  background-size: contain;
+background-repeat: no-repeat;
+background-position-x: 50%;
+background-color: #2d4453;
+
+">
+    </div>
+    <div class="project-title color-2">
+        <div class="top-bar-container">
+            <h1>Multiple blend files exporter</h1>
+        </div>
+    </div>
+    <div class="top-bar-container color-4" style="margin-bottom: 48px;">
+        <div class="project-description secondary-font">
+            <h2>The purpose of this project</h2>
+            <p>Before starting game development, we decided to create a test level
+                using assets from other projects. One of our graphic designers had a
+                Blender (<code>.blend</code>) file containing various models and assets
+                in a single file. Since Blender uses Python scripting, I considered
+                writing a script that could export all the models with a single click,
+                streamlining the workflow and speeding up level design. The script would
+                automatically detect each model in the <code>.blend</code> file and
+                export them as separate GLB files with textures, ready for use in the
+                game engine.</p>
+            <h2>How it works</h2>
+            <ul>
+                <li><strong>Set the input path</strong> - specify the folder containing
+                    one or more <code>blend</code> files in the <code>filepath</code>
+                    variable.</li>
+                <li><strong>Define the output path</strong> - enter the destination
+                    folder for exported <code>.glb</code> models in the
+                    <code>filepath_output</code> variable.
+                </li>
+            </ul>
+            <p>Once the paths are correctly set, the script will:</p>
+            <ul>
+                <li>Process all <code>blend</code> files within the specified input
+                    folder.</li>
+                <li>Export the results as <code>.glb</code> files to the designated
+                    output directory.</li>
+            </ul>
+
+            <hr>
+            <p>
+                Blender file: <a href="/assets/projects/gltf_exporter.blend">gltf_exporter.blend</a>
+            </p>
+            <hr>
+            <div>Tools used: Python, Blender</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="portfolio-bottom-site dynamic-width">
+        <div class="footer-contact">
+
+        </div>
+
+        <div class="copyright-section color-4">
+            Copyright © 2024-2025 Paweł Ruszkiewicz. All rights reserved.
+        </div>
+    </div>
+
+
+</body>
+
+</html>
