@@ -73,6 +73,18 @@
                 "position_y": "30%"
             },
             "tags": "C#;Programming;Unity"
+        },
+        {
+            "name": "Multiple blend files exporter",
+            "type": 1,
+            "date": "2025",
+            "description": "Fast exporter tool for converting multiple blend files to glb files with materials and textures.",
+            "url_code": "projects/multiple-blend-files-exporter",
+            "project_background": {
+                "url": "/assets/images/blend_to_gltf.png",
+                "bgColor": "#2d4453"
+            },
+            "tags": "Python;Blender"
         }
     ]
 }
