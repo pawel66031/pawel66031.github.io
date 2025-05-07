@@ -24,10 +24,30 @@
 }
 
 body {
+    --max-width: 1264px;
+    --main-bg-color: rgb(16, 15, 15);
+
     margin: 0px;
-    background-color: #100F0F;
+    background-color: var(--main-bg-color);
     color: #3d3d3d;
     font-family: "DM Serif Text";
+
+}
+
+.webpage-nav{
+    /* background-color: #1a1a1a; */
+    max-width: var(--max-width);
+
+    display: flex;
+    align-items: center;
+}
+
+.portfolio-nav-section{
+    padding: 10px 24px;
+    background-color: #555;
+    margin: 8px;
+    border-radius: 64px;
+  
 }
 
 .portfolio-nav-mobile:focus {
@@ -54,10 +74,12 @@ a:active {
 
 .title-section {
     font-family: "DM Serif Display";
-    margin-bottom: 32px;
+    margin: 32px 0;
+    border-top: 2px solid white;
     font-size: 54px;
     line-height: 0.8;
     padding-left: 8px;
+    padding-top: 32px;
 }
 
 
@@ -65,8 +87,8 @@ a:active {
 
 .portfolio-site {
     /* background-color: #001305; */
-    min-width: 1268px;
-    width: 1268px;
+    min-width: var(--max-width);
+    width: var(--max-width);
     margin: auto;
     position: relative;
 }
@@ -197,8 +219,6 @@ nav {
     --border-width: 1.5em;
 
     position: relative;
-    /* border: solid var(--border-width) rgba(0, 0, 0, 0.0); */
-    /* height: 50vmin; */
     z-index: 0;
     /* filter: blur(4px); */
     backdrop-filter: blur(4px);
@@ -231,10 +251,17 @@ nav {
     --margin-inside-border: 12px;
     --hero-border-radius: 24px;
 
-    height: 100vh;
+    height: min(400px, 100vh);
     color: #FBF6E9;
     font-family: "RobotoRegular";
     /* font-size: 54px; */
+
+    /* background: linear-gradient(rgba(17, 15, 9, 0.85), rgba(17, 15, 9, 0.95)), url("/assets/images/about-me-bg.jpg"); */
+    background: linear-gradient(rgba(16, 15, 15, 0.75), rgba(16, 15, 15, 1.0)), url("/assets/images/about-me-bg.jpg");
+    background-position: center;
+    backdrop-filter: contrast(20%);
+    background-size: cover;
+
 }
 
 .portfolio-hero-left-section {
@@ -316,8 +343,10 @@ nav {
 
 .color-4 {
     /* background-color: #F1F1F1; */
-    background-color: #dfd0b8;
-    color: #0D0D0D;
+    /* background-color: #dfd0b8; */
+    background: linear-gradient(rgb(15, 15, 15), rgb(42, 42, 42));
+    /* color: #0D0D0D; */
+    color: #f6f4ee;
 }
 
 .color-4-description {
@@ -406,8 +435,7 @@ nav {
 
 .portfolio-about-me-section {
     /* background-image: url("/assets/images/about-me-bg.png"); */
-    background: linear-gradient(rgba(17, 15, 9, 0.85), rgba(17, 15, 9, 0.95)),
-        url("/assets/images/about-me-bg.jpg");
+    background-color: var(--main-bg-color);
 
     background-position: center;
     backdrop-filter: contrast(20%);
@@ -482,6 +510,12 @@ nav {
     color: #feece7;
     line-height: 0.8;
     text-align: center;
+}
+
+.portfolio-nav-right-group{
+    margin-left: auto;
+    display: flex;
+    /* float: right; */
 }
 
 .portfolio-main-about-me-description {
@@ -938,7 +972,7 @@ nav {
 
 /*   Project   */
 .portfolio-container {
-    max-width: 1264px;
+    max-width: var(--max-width);
     /* width: 100%; */
     margin: 0 auto;
 }

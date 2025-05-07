@@ -26,7 +26,9 @@
 
 <body>
     <div class="portfolio-hero-section" id="main-page">
-        <nav>
+        <div class="portfolio-container">
+        <nav class="webpage-nav">
+
             <input type="checkbox" id="portfolio-check" style="display: none;">
             <label for="portfolio-check" class="portfolio-checkbtn">
                 <i class="fa fa-bars"></i>
@@ -39,9 +41,17 @@
                 <a onclick="menuTrigger()" href="/portfolio/projects">Projects</a>
                 <a onclick="menuTrigger()" href="#contact">Contact</a>
             </div>
-        </nav>
-        <div class="portfolio-dots-scene">
 
+            <div class="portfolio-nav-right-group">
+                <div class="portfolio-nav-section">About</div>
+                <div class="portfolio-nav-section">Skills</div>
+                <div class="portfolio-nav-section">Projects</div>
+                <div class="portfolio-nav-section">Contact</div>
+            </div>
+        </nav>
+        <!-- <div class="portfolio-dots-scene">
+
+        </div> -->
         </div>
 
         <div class="portfolio-container" style="height: 100%;">
@@ -399,7 +409,7 @@
         </div>
     </div>
 
-    <script type="module" src="/assets/scripts/point_world.js"></script>
+    <!-- <script type="module" src="/assets/scripts/point_world.js"></script>> -->
 
 </body>
 
