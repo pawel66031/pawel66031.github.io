@@ -1040,7 +1040,12 @@ nav {
     display: flex;
     padding: 20px;
 
+    
     border-top: solid 2px #f0e8db;
+}
+
+.portfolio-technology-computer-skills>div{
+    width: 100%;
 }
 
 .portfolio-technology-table-softwares {
@@ -1068,8 +1073,7 @@ nav {
 }
 
 .technology-language-info {
-    width: 33.33%;
-    height: 33.33%;
+    width: 14.28%;
 
     padding: 6px;
     box-sizing: border-box;
