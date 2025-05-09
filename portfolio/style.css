@@ -1056,6 +1056,10 @@ nav {
     border-top: solid 2px #f0e8db;
 }
 
+.portfolio-technology-computer-skills>div {
+    width: 100%;
+}
+
 .portfolio-technology-table-softwares {
     border-radius: 16px;
     padding: 8px;
