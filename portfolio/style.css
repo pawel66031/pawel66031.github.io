@@ -112,7 +112,7 @@ a:active {
     font-family: "Open Sans";
     font-weight: 700;
 
-    border-top: 2px solid white;
+    /* border-top: 2px solid white; */
     font-size: 54px;
     line-height: 0.8;
     padding-left: 8px;
@@ -171,18 +171,28 @@ nav {
 .portfolio-nav-mobile {
     display: none;
 
-    position: absolute;
+    position: block;
     top: 4.5rem;
     left: 0;
     background: #222831;
     z-index: 1;
-    width: 200px;
+    width: 100%;
 }
 
 .portfolio-nav-mobile a {
     color: #fff;
     padding: 1rem 1.5rem;
     display: block;
+}
+
+.portfolio-nav-mobile-group {
+    display: none;
+    margin-left: auto;
+}
+
+.portfolio-nav-desktop-group {
+    display: block;
+    margin-left: auto;
 }
 
 #portfolio-check:checked~.portfolio-nav-mobile {
@@ -357,7 +367,7 @@ nav {
 }
 
 .color-2 {
-    background-color: rgb(42, 42, 42);
+    background-color: rgb(15, 15, 15);
     color: #eee;
 }
 
@@ -530,7 +540,7 @@ nav {
 
 .portfolio-about-me-left-section {
     padding: 8px;
-    flex: 60%;
+    /* flex: 60%; */
 }
 
 .portfolio-about-me-right-section {
@@ -559,7 +569,8 @@ nav {
     font-size: 1rem;
     text-align: center;
     /* padding: 0 30%; */
-    width: 425px;
+    /* width: 425px; */
+
     margin: 0 auto;
 
     color: #d6f5f5;
@@ -639,7 +650,7 @@ nav {
     padding-left: 56px;
     font-size: 56px;
     margin: 32px 0;
-    border-top: 2px solid #eee;
+    /* border-top: 2px solid #eee; */
     padding-top: 24px;
 }
 
@@ -790,13 +801,19 @@ nav {
 
 .portfolio-projects {
     /* padding: 24px 0; */
-    background-color: rgb(42, 42, 42);
+    background-color: rgb(15, 15, 15);
+
 }
 
 .portfolio-projects-group-name {
     padding: 16px;
     font-size: 1.75rem;
     padding-left: 32px;
+    height: 100%;
+}
+
+.portfolio-projects-group-name>h4 {
+    margin: 4px 0;
 }
 
 .projects-group {
@@ -1345,6 +1362,10 @@ nav {
         text-align: center;
     }
 
+    .portfolio-main-about-me-description {
+        width: calc(100vw - 16px);
+    }
+
     .portfolio-main-about-me-flex {
         flex-direction: column-reverse;
         align-items: center;
@@ -1371,6 +1392,15 @@ nav {
     .tools-icon {
         flex: 50%;
         width: 100%;
+    }
+
+    /* Mobile and desktop */
+    .portfolio-nav-mobile-group {
+        display: block;
+    }
+
+    .portfolio-nav-desktop-group {
+        display: none;
     }
 
     .portfolio-technology-computer-skills {

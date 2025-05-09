@@ -32,29 +32,40 @@
                 <a class="portfolio-main-button" href="/portfolio">
                     <div>Paweł Ruszkiewicz</div>
                 </a>
-                <!-- <input type="checkbox" id="portfolio-check" style="display: none;">
-                <label for="portfolio-check" class="portfolio-checkbtn">
-                    <i class="fa fa-bars"></i>
-                </label>
-                <script src="/assets/scripts/menu_item.js"></script>
-                <div class="portfolio-nav-mobile">
-                    <a onclick="menuTrigger()" href="#main-page">Main Page</a>
-                    <a onclick="menuTrigger()" href="#about-me">About Me</a>
-                    <a onclick="menuTrigger()" href="#skills">Skills</a>
-                    <a onclick="menuTrigger()" href="/portfolio/projects">Projects</a>
-                    <a onclick="menuTrigger()" href="#contact">Contact</a>
-                </div> -->
 
-                <div class="portfolio-nav-right-group">
-                    <a href="#about-me" class="portfolio-nav-section">About</a>
-                    <a href="#skills" class="portfolio-nav-section">Skills</a>
-                    <a href="#projects" class="portfolio-nav-section">Projects</a>
-                    <a href="#contact" class="portfolio-nav-section">Contact</a>
+                <div class="portfolio-nav-desktop-group">
+                    <div class="portfolio-nav-right-group">
+                        <a href="#about-me" class="portfolio-nav-section">About</a>
+                        <a href="#skills" class="portfolio-nav-section">Skills</a>
+                        <a href="#projects" class="portfolio-nav-section">Projects</a>
+                        <a href="#contact" class="portfolio-nav-section">Contact</a>
+                    </div>
+                </div>
+                <div class="portfolio-nav-mobile-group">
+                    <input type="checkbox" id="portfolio-check" style="display: none;">
+                    <label for="portfolio-check" class="portfolio-checkbtn">
+                        <i class="fa fa-bars"></i>
+                    </label>
+                    <script src="/assets/scripts/menu_item.js"></script>
+                    <div class="portfolio-nav-mobile">
+                        <a onclick="menuTrigger()" href="#about-me">About Me</a>
+                        <a onclick="menuTrigger()" href="#skills">Skills</a>
+                        <a onclick="menuTrigger()" href="#projects">Projects</a>
+                        <a onclick="menuTrigger()" href="#contact">Contact</a>
+                    </div>
                 </div>
             </nav>
+
             <!-- <div class="portfolio-dots-scene">
 
         </div> -->
+        </div>
+
+        <div class="portfolio-nav-mobile">
+            <a onclick="menuTrigger()" href="#about-me">About Me</a>
+            <a onclick="menuTrigger()" href="#skills">Skills</a>
+            <a onclick="menuTrigger()" href="#projects">Projects</a>
+            <a onclick="menuTrigger()" href="#contact">Contact</a>
         </div>
 
         <div class="portfolio-container" style="height: 100%;">
@@ -65,8 +76,8 @@
                         Hello<br>My name is Paweł
                     </div>
                     <div class="portfolio-main-about-me-description">
-                        I believe that combining creativity with programming can significantly enhance workflow across
-                        various projects
+                        I believe that combining creativity with programming can<br>significantly enhance workflow
+                        across various projects
                     </div>
                 </div>
             </div>
@@ -116,7 +127,7 @@
     </div>
 
 
-    <div class="portfolio-technology-skills color-4" id="skills">
+    <div class="portfolio-technology-skills color-1" id="skills">
         <div class="portfolio-container">
             <div class="portfolio-technology-skills-title title-section">
                 <h3>Technology Skills</h3>
@@ -242,7 +253,7 @@
 
             <div>
                 <div class="portfolio-technology-half-section">
-                    <div class="portfolio-technology-title portfolio-about-me-description color-2-description">
+                    <div class="portfolio-technology-title portfolio-about-me-description color-1-description">
                         <p>List of programming languages I'm using</p>
                     </div>
                     <div class="portfolio-technology-table grid-table" style="height:100%">
@@ -304,7 +315,7 @@
                     <!-- <script type="module" src="/assets/scripts/dynamic_icons.js"></script> -->
                 </div>
             </div>
-            <script>
+            <!-- <script>
                 var maxHeight = 0;
 
                 const frameWork_1 = document.getElementsByClassName("framework-content-description")[0];
@@ -319,14 +330,14 @@
 
 
                 }, false);
-            </script>
+            </script> -->
         </div>
     </div>
 
 
 
 
-    <div class="portfolio-projects color-2" id="projects">
+    <div class="portfolio-projects color-1" id="projects">
         <div class="portfolio-container">
             <div class="title-section">
                 <!-- <div class="portfolio-projects-title title-portfolio-section title-section"> -->
@@ -342,7 +353,7 @@
 
 
     <!-- Contact -->
-    <div class="portfolio-contact color-3" id="contact">
+    <div class="portfolio-contact color-1" id="contact">
         <div class="portfolio-container">
             <div class="portfolio-contact-title">Contact</div>
             <div class="portfolio-contact-description">

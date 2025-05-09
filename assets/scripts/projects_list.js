@@ -28,7 +28,7 @@ function parseJsonProject(json) {
         if (projects[i].length == 0) continue
 
         const darker_background = project_section.appendChild(document.createElement("div"))
-        darker_background.style = "background-color: #00000040;"
+        // darker_background.style = "background-color: #00000040;"
 
 
         const portfolio_container = darker_background.appendChild(document.createElement("div"))
@@ -36,7 +36,9 @@ function parseJsonProject(json) {
 
         const groupTitle = portfolio_container.appendChild(document.createElement("div"))
         groupTitle.className = "portfolio-projects-group-name"
-        groupTitle.innerText = groupProjectName[i]
+
+        const headerGroupTitle = groupTitle.appendChild(document.createElement("h4"))
+        headerGroupTitle.innerText = groupProjectName[i]
 
         const ulGroupPage = project_section.appendChild(document.createElement("ul"));
         ulGroupPage.className = "projects-group portfolio-container"
