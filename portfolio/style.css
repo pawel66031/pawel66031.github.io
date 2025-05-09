@@ -47,8 +47,12 @@ body {
     margin: 0px;
     background-color: var(--main-bg-color);
     color: #3d3d3d;
-    font-family: "DM Serif Text";
+    font-family: "Open Sans";
 
+}
+
+h3 {
+    margin: 40px 0
 }
 
 .webpage-nav {
@@ -57,6 +61,12 @@ body {
 
     display: flex;
     align-items: center;
+}
+
+.portfolio-main-button {
+    font-weight: 500;
+    font-size: larger;
+    padding: auto 4px;
 }
 
 .portfolio-nav-section {
@@ -99,13 +109,13 @@ a:active {
 }
 
 .title-section {
-    font-family: "DM Serif Display";
-    margin: 32px 0;
+    font-family: "Open Sans";
+    font-weight: 700;
+
     border-top: 2px solid white;
     font-size: 54px;
     line-height: 0.8;
     padding-left: 8px;
-    padding-top: 32px;
 }
 
 
@@ -279,7 +289,7 @@ nav {
 
     height: min(400px, 100vh);
     color: #FBF6E9;
-    font-family: "RobotoRegular";
+    font-family: "Open Sans";
     /* font-size: 54px; */
 
     /* background: linear-gradient(rgba(17, 15, 9, 0.85), rgba(17, 15, 9, 0.95)), url("/assets/images/about-me-bg.jpg"); */
@@ -335,19 +345,20 @@ nav {
 
 .color-1 {
     /* background-color: #100F0F; */
-    background-color: #153448;
-    color: #C1EFF0;
+    background-color: rgb(15, 15, 15);
+    color: #eeeeee;
 }
 
 .color-1-description {
     /* color: #d6f5f5; */
-    color: #0d0d0d;
+    /* background: linear-gradient(rgb(42, 42, 42), rgb(15, 15, 15)); */
+    color: #eeeeee;
     font-family: "Open Sans";
 }
 
 .color-2 {
-    background-color: #3c5b6f;
-    color: #EAFAFA;
+    background-color: rgb(42, 42, 42);
+    color: #eee;
 }
 
 .color-2-brighter {
@@ -358,7 +369,8 @@ nav {
     /* background-color: #E2DCC8; */
     /* background-color: #110f09; */
     /* background-color: #948979; */
-    background-color: #252525;
+    background: linear-gradient(rgb(42, 42, 42), rgb(15, 15, 15));
+    /* background-color: #252525; */
     color: #E2DCC8;
 }
 
@@ -370,6 +382,7 @@ nav {
 .color-4 {
     /* background-color: #F1F1F1; */
     /* background-color: #dfd0b8; */
+    /* background-color: rgb(15, 15, 15); */
     background: linear-gradient(rgb(15, 15, 15), rgb(42, 42, 42));
     /* color: #0D0D0D; */
     color: #f6f4ee;
@@ -378,7 +391,6 @@ nav {
 .color-4-description {
     color: white;
 }
-
 
 .color-red {
     background-color: #F87A53;
@@ -467,7 +479,6 @@ nav {
     backdrop-filter: contrast(20%);
 
     background-size: cover;
-    padding-top: 90px;
     padding-bottom: 40px;
 }
 
@@ -485,7 +496,7 @@ nav {
 }
 
 .portfolio-about-me-description {
-    padding: 16px;
+    padding: 0 16px;
     width: 70%;
 }
 
@@ -530,12 +541,12 @@ nav {
 }
 
 .portfolio-main-about-me-title {
-    font-family: "DM Serif Display";
     margin-bottom: 32px;
     font-size: 54px;
     color: #feece7;
     line-height: 0.8;
     text-align: center;
+    font-weight: 500;
 }
 
 .portfolio-nav-right-group {
@@ -599,16 +610,12 @@ nav {
 /*************************/
 
 .portfolio-technology-skills {
-    /* padding-top: 90px; */
-    padding-bottom: 60px;
+    color: #ffffff;
+    padding-bottom: 30px;
 }
 
 .portfolio-technology-skills-description {
-    padding: 20px;
-}
-
-.portfolio-technology-half-section {
-    width: 50%;
+    padding: 0 16px;
 }
 
 .technology-language-description {
@@ -632,6 +639,8 @@ nav {
     padding-left: 56px;
     font-size: 56px;
     margin: 32px 0;
+    border-top: 2px solid #eee;
+    padding-top: 24px;
 }
 
 .portfolio-contact-description {
@@ -674,13 +683,13 @@ nav {
     /* background-color: #eafafac0; */
     padding: 12px;
     border-radius: 8px;
-    border: 5px;
-    border-style: solid;
-    border-color: #f0e8db;
+    border: 3px solid rgba(238, 238, 238, 0.25);
+    transition: 0.3s;
 }
 
 .tool-content:hover {
-    background-color: hsl(37, 38%, 75%);
+    background-color: #383838;
+    border: 3px solid rgba(238, 238, 238, 1.0);
 }
 
 .tool-icon {
@@ -694,17 +703,19 @@ nav {
 .tool-title {
     text-align: center;
     font-size: 1.5rem;
+    font-weight: 500;
+    padding-top: 8px;
 }
 
 .tool-description {
-    padding: 12px;
+    padding: 20px 12px;
     text-align: justify;
     font-size: 0.9rem;
     font-family: "Open Sans";
     align-content: center;
 
     height: 1.5rem;
-    padding-top: 4px;
+    padding-top: 8px;
 }
 
 .portfolio-skills-description {
@@ -778,7 +789,8 @@ nav {
 }
 
 .portfolio-projects {
-    padding: 24px 0;
+    /* padding: 24px 0; */
+    background-color: rgb(42, 42, 42);
 }
 
 .portfolio-projects-group-name {
@@ -878,6 +890,7 @@ nav {
 .title-portfolio-section {
     padding: 24px;
     padding-left: 32px;
+    margin-bottom: 16px;
 }
 
 .title-portfolio-section>h1 {
@@ -1045,19 +1058,14 @@ nav {
 
 .portfolio-technology-table-softwares {
     border-radius: 16px;
-    margin: 8px;
     padding: 8px;
     display: flex;
     flex-direction: column;
 }
 
-.portfolio-technology-title {
-    padding: 12px;
-}
-
 .portfolio-technology-table {
     padding: 8px;
-    margin: 8px;
+    /* margin: 0 8px; */
 
     position: relative;
 
@@ -1068,15 +1076,16 @@ nav {
 }
 
 .technology-language-info {
-    width: 33.33%;
-    height: 33.33%;
+    --width-info: calc(100% / 7);
+
+    width: var(--width-info);
 
     padding: 6px;
     box-sizing: border-box;
 }
 
 .technology-language-border {
-    border: 2px solid #f0e8db;
+    border: 2px solid rgba(238, 238, 238, 0.25);
     border-radius: 8px;
 
     width: 100%;
@@ -1087,10 +1096,15 @@ nav {
     align-items: center;
     font-family: "Open Sans";
     justify-content: center;
+
+    padding: 8px;
+    box-sizing: border-box;
+    transition: 0.3s;
 }
 
 .technology-language-border:hover {
-    background-color: #d7c5a7
+    background-color: #383838;
+    border: 2px solid rgba(238, 238, 238, 1.0);
 }
 
 .framework-section {
@@ -1206,6 +1220,7 @@ nav {
     padding: 24px 8px;
     text-align: center;
     font-family: "Open Sans";
+    border-top: 2px solid #eee;
 }
 
 .footer-contact {

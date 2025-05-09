@@ -29,7 +29,10 @@
         <div class="portfolio-container">
             <nav class="webpage-nav">
 
-                <input type="checkbox" id="portfolio-check" style="display: none;">
+                <a class="portfolio-main-button" href="/portfolio">
+                    <div>Paweł Ruszkiewicz</div>
+                </a>
+                <!-- <input type="checkbox" id="portfolio-check" style="display: none;">
                 <label for="portfolio-check" class="portfolio-checkbtn">
                     <i class="fa fa-bars"></i>
                 </label>
@@ -40,7 +43,7 @@
                     <a onclick="menuTrigger()" href="#skills">Skills</a>
                     <a onclick="menuTrigger()" href="/portfolio/projects">Projects</a>
                     <a onclick="menuTrigger()" href="#contact">Contact</a>
-                </div>
+                </div> -->
 
                 <div class="portfolio-nav-right-group">
                     <a href="#about-me" class="portfolio-nav-section">About</a>
@@ -59,26 +62,26 @@
 
                 <div class="portfolio-about-me-left-section">
                     <div class="portfolio-main-about-me-title">
-                        Hello.<br>My name is Paweł
+                        Hello<br>My name is Paweł
                     </div>
                     <div class="portfolio-main-about-me-description">
                         I believe that combining creativity with programming can significantly enhance workflow across
-                        various projects.
+                        various projects
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="portfolio-about-me-section dynamic-width color-3" id="about-me">
+    <div class="portfolio-about-me-section dynamic-width color-1" id="about-me">
         <div class="portfolio-container">
             <div class="portfolio-about-me-title title-section">
-                About Me
+                <h3>About Me</h3>
             </div>
-            <div class="portfolio-about-me-description color-3-description section-description">
+            <div class="portfolio-about-me-description color-1-description section-description">
                 <p>
-                    My name is Paweł Ruszkiewicz. I'm a programmer and 3D graphic designer, specializing in working as a
-                    Technical Artist. My passion is exploring technologies related to real-time image processing and
+                    My name is Paweł Ruszkiewicz. I'm technical artist, specializing in programming and 3D modelling. My
+                    passion is exploring technologies related to real-time image processing and
                     creating innovative procedural solutions. I love exploring new tools and methods that help in
                     effective creative work.
                 </p>
@@ -102,6 +105,10 @@
                         <img src="/assets/icons/github-icon.png" height="24px" style="float:left;filter: invert(100%)">
                         <a href="https://github.com/pawel66031" target="_blank">github.com/pawel66031</a>
                     </li>
+                    <li>
+                        <img src="/assets/icons/github-icon.png" height="24px" style="float:left;filter: invert(100%)">
+                        <a href="https://github.com/pawel66031" target="_blank">Dać Discorda?? ArcLudwik</a>
+                    </li>
                 </ul>
 
             </div>
@@ -112,10 +119,10 @@
     <div class="portfolio-technology-skills dynamic-width color-4" id="skills">
         <div class="portfolio-container">
             <div class="portfolio-technology-skills-title title-section">
-                Technology Skills
+                <h3>Technology Skills</h3>
             </div>
-            <div class="portfolio-technology-skills-description color-4-description section-description">
-                Below there are list of softwares that I use very often
+            <div class="portfolio-about-me-description color-4-description section-description">
+                <p>Below there are list of softwares that I use very often</p>
             </div>
             <div class="portfolio-technology-table-softwares">
                 <!-- Start new technology list -->
@@ -233,9 +240,11 @@
 
             </div>
 
-            <div class="portfolio-technology-computer-skills">
+            <div>
                 <div class="portfolio-technology-half-section">
-                    <div class="portfolio-technology-title color-2-description">Development Languages</div>
+                    <div class="portfolio-technology-title portfolio-about-me-description color-2-description">
+                        <p>List of programming languages I'm using</p>
+                    </div>
                     <div class="portfolio-technology-table grid-table" style="height:100%">
                         <div class="technology-language-info">
                             <div class="technology-language-border">
@@ -291,63 +300,9 @@
                                 <div class="technology-language-description">PHP</div>
                             </div>
                         </div>
-                        <!-- //Programming section -->
-
-
-
                     </div>
                     <!-- <script type="module" src="/assets/scripts/dynamic_icons.js"></script> -->
                 </div>
-
-                <!-- <div class="portfolio-technology-half-section">
-                    <div class="portfolio-technology-title color-yellow-description">Frameworks that I
-                        know well
-                    </div>
-                    <div class="portfolio-technology-table flex-table">
-                        <div class="framework-section">
-                            <div class="framework-table">
-                                <div class="framework-content-logo">
-                                    <a href="https://threejs.org/" target="_blank">
-                                        <img src="/assets/icons/threejs-icon.png" alt="three.js Framework"
-                                            title="three.js Framework" />
-                                    </a>
-                                </div>
-                                <div class="framework-content-title">
-                                    Threejs
-                                </div>
-                                <div class="framework-content-description section-description color-1-description">
-                                    This framework allows to easily create 3D content. It contains many
-                                    functions
-                                    for
-                                    creating 3D scenes using WebGL renderer. With this library it is
-                                    easy to
-                                    implement
-                                    interactive webpage.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="framework-section">
-                            <div class="framework-table">
-                                <div class="framework-content-logo">
-                                    <a href="https://opencv.org/" target="_blank">
-                                        <img src="/assets/icons/OpenCV_logo.png" alt="OpenCV Framework"
-                                            title="OpenCV Framework" />
-                                    </a>
-                                </div>
-                                <div class="framework-content-title">
-                                    OpenCV
-                                </div>
-                                <div class="framework-content-description section-description color-1-description">
-                                    Library that contains dozens of algorithms for graphic processes.
-                                    Mostly used
-                                    for
-                                    editing and manipulating images in script.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
             <script>
                 var maxHeight = 0;
@@ -373,8 +328,9 @@
 
     <div class="portfolio-projects color-2" id="projects">
         <div class="portfolio-container">
-            <div class="portfolio-projects-title title-portfolio-section title-section">
-                Projects and Experiences
+            <div class="title-section">
+                <!-- <div class="portfolio-projects-title title-portfolio-section title-section"> -->
+                <h3>Projects and Experiences</h3>
             </div>
         </div>
         <div class="portfolio-projects-group">
@@ -391,10 +347,10 @@
             <div class="portfolio-contact-title">Contact</div>
             <div class="portfolio-contact-description">
                 <div class="portfolio-contact-container">
-                    <h3>Want to chat?</h3>
-                    <p>If you like what I create and want to learn more about my work, feel free to reach out! We can
-                        discuss collaboration
-                        opportunities, share experiences, or simply talk about 3D graphics and technology.</p><br><br>
+                    <h4>Do you have an idea, a question or want to discuss collaboration? <br>Go ahead and write - I
+                        answer
+                        every message!</h4>
+                    <br><br>
                     E-mail:
                     <a href="mailto:pawel66031@protonmail.com">pawel66031@protonmail.com</a><br>
                 </div>
@@ -403,9 +359,11 @@
     </div>
 
 
-    <div class="portfolio-bottom-site dynamic-width">
-        <div class="copyright-section color-4">
-            Copyright © 2024-2025 Paweł Ruszkiewicz. All rights reserved.
+    <div class="portfolio-bottom-site dynamic-width color-1">
+        <div class="portfolio-container">
+            <div class="copyright-section ">
+                Copyright © 2024-2025 Paweł Ruszkiewicz. All rights reserved.
+            </div>
         </div>
     </div>
 
