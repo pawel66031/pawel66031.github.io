@@ -53,12 +53,13 @@ h3 {
 
     display: flex;
     align-items: center;
+    transition: 0.3;
 }
 
 .portfolio-main-button {
     font-weight: 500;
     font-size: larger;
-    padding: auto 4px;
+    padding: 16px;
 }
 
 .portfolio-nav-section {
@@ -1401,6 +1402,10 @@ nav {
     .portfolio-projects-group-name {
         text-align: center;
         padding: 32px 0;
+    }
+
+    .technology-language-info{
+        width: 25%;
     }
 }
 
