@@ -662,6 +662,11 @@ nav {
 
 .portfolio-contact-item {
     width: 33.33%;
+    text-align: center;
+}
+
+.portfolio-contact-item>img{
+    width: 128px;
 }
 
 .portfolio-contact-qr-section {
