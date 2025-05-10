@@ -124,7 +124,7 @@ function parseJsonProject(json) {
 
 
             // const projectInfo = marginDiv.appendChild(document.createElement("div"));
-            projectInfo.className = "portfolio-project-list color-4";
+            projectInfo.className = "portfolio-project-list project-list-background";
 
             // Add thumbnail
             const projectThumbnail = projectInfo.appendChild(document.createElement("div"));
@@ -144,19 +144,19 @@ function parseJsonProject(json) {
             const projectDescription = projectInfo.appendChild(document.createElement("p"));
             projectDescription.innerHTML = currentProject.description;
 
-            // Add tag
-            const projectTags = projectInfo.appendChild(document.createElement("div"))
-            projectTags.className = "project-tags";
+            // // Add tag
+            // const projectTags = projectInfo.appendChild(document.createElement("div"))
+            // projectTags.className = "project-tags";
 
-            // if (currentProject.tags != "") {
-            if (currentProject.hasOwnProperty("tags")) {
-                const tags = currentProject.tags.split(";")
+            // // if (currentProject.tags != "") {
+            // if (currentProject.hasOwnProperty("tags")) {
+            //     const tags = currentProject.tags.split(";")
 
-                for (var t = 0; t < tags.length; ++t) {
-                    const tag = projectTags.appendChild(document.createElement("div"));
-                    tag.innerHTML = tags[t];
-                }
-            }
+            //     for (var t = 0; t < tags.length; ++t) {
+            //         const tag = projectTags.appendChild(document.createElement("div"));
+            //         tag.innerHTML = tags[t];
+            //     }
+            // }
 
             // Assign background image
             var elementStyle = "";

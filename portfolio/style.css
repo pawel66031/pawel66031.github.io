@@ -23,14 +23,6 @@
     src: url("/assets/fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf");
 }
 
-
-/* Animations */
-
-/* @keyframes navigation-hover {
-    from {opacity: 0.0;}
-    to {: 0.5;}
-} */
-
 html {
     scroll-behavior: smooth;
 }
@@ -56,7 +48,7 @@ h3 {
 }
 
 .webpage-nav {
-    /* background-color: #1a1a1a; */
+    background-color: #1a1a1a00;
     max-width: var(--max-width);
 
     display: flex;
@@ -179,10 +171,11 @@ nav {
     width: 100%;
 }
 
-.portfolio-nav-mobile a {
+.portfolio-nav-mobile>a {
     color: #fff;
     padding: 1rem 1.5rem;
     display: block;
+    text-align: center;
 }
 
 .portfolio-nav-mobile-group {
@@ -195,9 +188,17 @@ nav {
     margin-left: auto;
 }
 
+/* #portfolio-check:checked + .webpage-nav {} */
+.webpage-nav:has(#portfolio-check:checked) {
+    background-color: #1a1a1aff;
+}
+
+
 #portfolio-check:checked~.portfolio-nav-mobile {
     display: block;
+    position: absolute;
 }
+
 
 /* Main menu - threejs background */
 .portfolio-title {
@@ -366,39 +367,18 @@ nav {
     font-family: "Open Sans";
 }
 
-.color-2 {
-    background-color: rgb(15, 15, 15);
-    color: #eee;
-}
-
-.color-2-brighter {
-    background-color: #1e7a7b;
-}
-
-.color-3 {
-    /* background-color: #E2DCC8; */
-    /* background-color: #110f09; */
-    /* background-color: #948979; */
-    background: linear-gradient(rgb(42, 42, 42), rgb(15, 15, 15));
-    /* background-color: #252525; */
-    color: #E2DCC8;
-}
-
-.color-3-description {
-    /* color: #2C2307; */
-    color: #f6f4ee;
-}
-
-.color-4 {
-    /* background-color: #F1F1F1; */
-    /* background-color: #dfd0b8; */
-    /* background-color: rgb(15, 15, 15); */
+.project-list-background {
     background: linear-gradient(rgb(15, 15, 15), rgb(42, 42, 42));
-    /* color: #0D0D0D; */
     color: #f6f4ee;
+    transition: 0.3s;
+}
+.project-list-background:hover{
+    background: linear-gradient(rgb(42, 42, 42), rgb(42, 42, 42));
+    transition: 0.3s;
 }
 
 .color-4-description {
+    /* background: linear-gradient(rgb(42, 42, 42), rgb(42, 42, 42)); */
     color: white;
 }
 
@@ -749,10 +729,6 @@ nav {
     border-style: solid;
 
     position: absolute;
-}
-
-.skills-content-logo-background:hover {
-    z-index: 99;
 }
 
 .skills-content-logo>img {
@@ -1201,10 +1177,6 @@ nav {
     background-size: cover;
     transition: transform 500ms;
 }
-
-/* #graphic:hover{
-    transform: scale(1.1);
-} */
 
 .list-of-projects>li {
     list-style: none;
