@@ -629,7 +629,7 @@ nav {
 /**************/
 
 .portfolio-contact-title {
-    padding-left: 56px;
+    /* padding-left: 56px; */
     font-size: 56px;
     margin: 32px 0;
     /* border-top: 2px solid #eee; */
@@ -658,6 +658,7 @@ nav {
 
 .portfolio-contact-list {
     display: flex;
+    margin: 24px 0;
 }
 
 .portfolio-contact-item {
@@ -665,7 +666,22 @@ nav {
     text-align: center;
 }
 
-.portfolio-contact-item>img{
+.contact-button>a {
+    padding: 8px;
+    border: 2px solid white;
+    border-radius: 8px;
+    transition: 0.25s;
+}
+
+.contact-button>a:hover {
+    padding: 12px;
+    border: 0px solid black;
+    border-radius: 0px;
+    color: #080808;
+    background-color: #ffffff;
+}
+
+.portfolio-contact-item>img {
     width: 128px;
 }
 
@@ -801,6 +817,7 @@ nav {
     font-size: 1.75rem;
     padding-left: 32px;
     height: 100%;
+    padding-bottom: 0px;
 }
 
 .portfolio-projects-group-name>h4 {
@@ -1228,7 +1245,8 @@ nav {
     padding: 24px 8px;
     text-align: center;
     font-family: "Open Sans";
-    border-top: 2px solid #eee;
+
+    color: white;
 }
 
 .footer-contact {
@@ -1323,6 +1341,10 @@ nav {
         padding: 0;
     }
 
+    .title-section {
+        text-align: center;
+    }
+
     .portfolio-about-me-description {
         padding: 8px;
         width: auto;
@@ -1415,7 +1437,7 @@ nav {
 
     .portfolio-projects-group-name {
         text-align: center;
-        padding: 32px 0;
+        /* padding: 32px 0; */
     }
 
     .technology-language-info {

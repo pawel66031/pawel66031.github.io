@@ -10,6 +10,7 @@
     margin: 0 auto;
     height: 100%;
 
+    color: white;
     align-content: center;
 }
 
@@ -29,7 +30,7 @@
 }
 
 .website-portfolio-logo {
-    width: 200px;
+    width: 220px;
     height: 100%;
 
     align-items: center;
@@ -97,9 +98,27 @@ h1 {
     margin: 12px;
 }
 
+.building-viewer-gallery {
+    display: flex;
+}
+
+.building-viewer-gallery>div {
+    width: 50%;
+}
+
 @media only screen and (max-width: 1264px) {
     .top-bar-container {
         max-width: 100vw;
         margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .building-viewer-gallery {
+        flex-direction: column;
+    }
+
+    .building-viewer-gallery>div {
+        width: 100%;
     }
 }
