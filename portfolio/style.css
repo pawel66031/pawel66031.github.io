@@ -373,7 +373,8 @@ nav {
     color: #f6f4ee;
     transition: 0.3s;
 }
-.project-list-background:hover{
+
+.project-list-background:hover {
     background: linear-gradient(rgb(42, 42, 42), rgb(42, 42, 42));
     transition: 0.3s;
 }
@@ -653,6 +654,14 @@ nav {
 .portfolio-contact-container>p {
     font-family: "Open Sans";
     font-size: 1.1rem;
+}
+
+.portfolio-contact-list {
+    display: flex;
+}
+
+.portfolio-contact-item {
+    width: 33.33%;
 }
 
 .portfolio-contact-qr-section {
@@ -1404,7 +1413,7 @@ nav {
         padding: 32px 0;
     }
 
-    .technology-language-info{
+    .technology-language-info {
         width: 25%;
     }
 }
